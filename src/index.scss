@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+body {
+  margin: 0;
+  font-family: 'Jost', sans-serif;
+  //font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  --active-color: #63B561;
+  --gray: #dddddd;
+  --gray-md: #CCCCCC;
+}
+
+button {
+  font-family: 'Jost', sans-serif;
+
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+.container {
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
+.form-item {
+  &__field {}
+  &__select {
+    max-width: 70px;
+    .react-select {
+
+      &__indicator {
+        padding: 5px;
+      }
+      &__indicator-separator {
+        display: none;
+      }
+      &__control {
+        border: none;
+        box-shadow: none;
+        min-height: 40px;
+
+        &--menu-is-open {
+          border: none;
+          box-shadow: none;
+        }
+      }
+      &__menu {
+        overflow: hidden;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      &__menu-list {
+        padding: 0;
+      }
+      &__option {
+        &:active {
+          //background-color: hotpink;
+        }
+      }
+    }
+  }
+}
+
+.btn {
+  //background-color: green;
+  width: 100%;
+  &.MuiButton-root {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1;
+    text-transform: unset;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background-color: var(--active-color);
+    border-radius: 10px;
+  }
+}
+
+.btn-wrap {
+  width: 100%;
+  display: inline-block;
+  margin-top: 24px;
+}
+
+section {
+  margin-bottom: 32px;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+

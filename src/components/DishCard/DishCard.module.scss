@@ -1,0 +1,80 @@
+.dish {
+  margin: 0 -16px;
+  padding: 16px;
+  border-bottom: 1px solid var(--gray);
+  border-top: 1px solid var(--gray);
+}
+.dishGrid {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  grid-column-gap: 20px;
+}
+
+.dishFlex {
+  display: flex;
+  align-items: center;
+  &_spaceBetween {
+
+    justify-content: space-between;
+  }
+}
+
+.imgWrap {
+  position: relative;
+  height: 0;
+  border: none;
+  padding-top: 100%;
+}
+
+.imgContent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.dishTitle {
+  font-weight: 500;
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.dishWeight {
+  font-size: 14px;
+  font-weight: 500;
+  color: #7C7474;
+  margin-right: 20px;
+}
+
+.dishLabel {
+  font-size: 12px;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background-color: var(--active-color);
+}
+
+.dishDescr {
+  font-size: 14px;
+  line-height: 1.3;
+  margin-top: 10px;
+}
+
+.dishPrice {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: #2f3c38;
+}

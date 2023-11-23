@@ -1,11 +1,11 @@
 import React from 'react';
 
-const MenuPage = () => {
+const ReviewPage = () => {
     return (
         <div>
-            MenuPage
+            ReviewPage
         </div>
     );
 };
 
-export {MenuPage};
+export {ReviewPage};

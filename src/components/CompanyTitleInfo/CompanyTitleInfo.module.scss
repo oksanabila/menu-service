@@ -1,0 +1,67 @@
+.companyLogo {
+  margin-top: -65px;
+  z-index: -1;
+  width: 100%;
+}
+
+.title {
+  font-size: 30px;
+  margin: 16px 0 0 0;
+}
+.descrShort {
+  color: #666666;
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+.descrLong {
+  color: #333333;
+}
+
+.contacts {
+  width: 100%;
+  display: inline-block;
+  background-color: #F6F4F4;
+}
+.contactsItem {
+  margin: 20px 0;
+}
+.contactsTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666666;
+
+}
+.contactsBody {
+  //font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.social {}
+
+.socialItem {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.socialIcon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 10px;
+  &.inst {
+    background-image: url("/src/assets/img/inst-icon.svg");
+  }
+}
+
+.socialLink {
+  font-weight: 500;
+  font-size: 16px;
+  //line-height: 30px;
+  color: #000000;
+  text-decoration: none;
+}

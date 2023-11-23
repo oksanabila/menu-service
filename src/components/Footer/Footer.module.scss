@@ -1,0 +1,22 @@
+.footer {
+  //position: static;
+  //width: 100%;
+  //bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+
+
+  order: 3;
+  margin-top: auto;
+
+}
+
+.footerLink {
+  color: #F6F4F4;
+  text-decoration: none;
+}

@@ -1,0 +1,98 @@
+//.likeBtnContainer {
+//  //display: grid;
+//  //grid-template-columns: 40% 1fr;
+//  //border: 1px solid palevioletred;
+//  border-radius: 4px;
+//  background-color: white;
+//  width: 80px;
+//}
+//
+//.likeBtnCount {
+//  display: flex;
+//  align-items: center;
+//  justify-items: center;
+//  font-weight: 500;
+//  color: var(--gray);
+//  background-color: var(--gray-md);
+//  width: 40%;
+//}
+//
+//.likeBtn {
+//  width: 100%;
+//  display: flex;
+//  align-items: center;
+//  justify-items: center;
+//  background-color: white;
+//  border: 1px solid var(--gray-md);
+//  border-radius: 4px;
+//  padding: 0;
+//}
+//
+//.likeIcon {
+//  display: flex;
+//  align-items: center;
+//  justify-items: center;
+//  padding: 0 8px;
+//  display: flex;
+//  align-items: center;
+//  justify-content: center;
+//  transition: transform .225s,scale .225s;
+//}
+
+
+
+.likeBtnContainer {
+  width: 80px;
+  margin-top: 10px;
+}
+
+.likeBtn {
+  height: 40px;
+  width: 100%;
+  min-width: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  border: 1px solid var(--gray-md);
+  border-radius: 4px;
+  cursor: pointer;
+  &.clicked {
+    .likeIcon {
+
+      & path {
+        fill: var(--active-color);
+        stroke: var(--active-color);
+      }
+    }
+
+  }
+}
+
+.likeBtnCount {
+  height: 100%;
+  width: 45%;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2B2626;
+  //background-color: var(--gray-md);
+  border-right: 1px solid var(--gray-md);
+}
+
+.likeIcon {
+  height: 100%;
+  width: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .225s,scale .225s;
+  svg {
+    transition: transform .225s,scale .225s;
+  }
+}
+

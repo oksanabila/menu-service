@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,WAAY;EACV,gBAAgB,EAAE,OAAO",
+"sources": ["SideMenu.module.scss"],
+"names": [],
+"file": "SideMenu.module.css"
+}

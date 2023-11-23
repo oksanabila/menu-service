@@ -1,0 +1,43 @@
+.navTabs {
+  overflow: hidden;
+  display: flex;
+  position: sticky;
+  top: 0;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  background-color: white;
+  padding: 16px 16px;
+  margin: 0 -16px;
+  z-index: 2;
+  box-shadow: 1px 5px 9px -4px rgba(156, 156, 156, 0.82);
+  -webkit-box-shadow: 1px 5px 9px -4px rgba(156, 156, 156, 0.82);
+  -moz-box-shadow: 1px 5px 9px -4px rgba(156, 156, 156, 0.82); }
+
+.buttonTab {
+  font-weight: 500;
+  color: black;
+  padding: 2px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: unset;
+  border-bottom: 4px solid transparent;
+  margin: 0 5px;
+  flex-shrink: 0; }
+  .buttonTab.active {
+    border-color: var(--active-color); }
+
+.category {
+  margin-bottom: 0; }
+
+h2 {
+  color: #333; }
+
+.categoryTitle {
+  font-size: 24px;
+  margin: 0 -16px;
+  padding: 6px 16px;
+  background-color: var(--gray); }
+
+/*# sourceMappingURL=SubMenuTabs.module.css.map */

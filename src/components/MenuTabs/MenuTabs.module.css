@@ -1,0 +1,18 @@
+.tabsWrap {
+  width: 100%; }
+
+.menuTab {
+  font-weight: 600;
+  font-size: 24px;
+  padding: 6px 16px;
+  margin: 10px 16px 0 0;
+  border-radius: 10px;
+  color: #333333;
+  background-color: #F6F4F4;
+  border: 2px solid #CCCCCC; }
+  .menuTab[aria-selected="true"] {
+    background-color: white;
+    border-color: var(--active-color);
+    color: var(--active-color); }
+
+/*# sourceMappingURL=MenuTabs.module.css.map */

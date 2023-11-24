@@ -1,14 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import css from './SubMenuTabs.module.css';
-import {DishCard} from "../DishCard/DishCard";
+import { DishCard } from "../DishCard/DishCard";
 
-
-const SubMenuTabs = () => {
-    const categories = ['Main dishes', 'Meat', 'Combo Menu', 'Salads', 'Bowl', 'Deserts', 'Category 7', 'Category 8'];
-    const [activeCategory, setActiveCategory] = useState(categories[0]);
+const SubMenuTabs = ({ subsections }) => {
+    const [activeCategory, setActiveCategory] = useState(subsections[0]?.name || '');
     const containerRef = useRef(null);
     const verticalPadding = 60;
-
 
     const scrollToCategory = (category) => {
         const categoryElement = document.getElementById(category);
@@ -18,27 +15,24 @@ const SubMenuTabs = () => {
         });
     };
 
-
     useEffect(() => {
         const handleScroll = () => {
             const scrollPosition = window.scrollY;
-            const categoryElements = categories.map((category) => {
-                const element = document.getElementById(category);
+            const categoryElements = subsections.map((subsection) => {
+                const element = document.getElementById(subsection.name);
                 return {
-                    category,
+                    name: subsection.name,
                     offsetTop: element ? element.offsetTop - verticalPadding : 0,
                     offsetBottom: element ? element.offsetTop + element.offsetHeight - verticalPadding : 0,
                 };
             });
 
-
             for (let i = 0; i < categoryElements.length; i++) {
                 if (scrollPosition >= categoryElements[i].offsetTop && scrollPosition < categoryElements[i].offsetBottom) {
-                    setActiveCategory(categoryElements[i].category);
+                    setActiveCategory(categoryElements[i].name);
                     break;
                 }
             }
-
 
             const activeTab = document.querySelector(`.${css.active}`);
             if (activeTab && containerRef.current) {
@@ -46,20 +40,16 @@ const SubMenuTabs = () => {
             }
         };
 
-
         window.addEventListener('scroll', handleScroll);
-
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [categories]);
-
+    }, [subsections]);
 
     useEffect(() => {
         const handleTabClick = (category) => {
             const categoryElement = document.getElementById(category);
-
 
             if (categoryElement) {
                 setActiveCategory(category);
@@ -70,14 +60,11 @@ const SubMenuTabs = () => {
             }
         };
 
-
         const container = containerRef.current;
-
 
         if (container) {
             container.addEventListener('click', handleTabClick);
         }
-
 
         return () => {
             if (container) {
@@ -86,40 +73,32 @@ const SubMenuTabs = () => {
         };
     }, [containerRef]);
 
-
     return (
         <div>
             <nav ref={containerRef} className={css.navTabs}>
-                {categories.map((category) => (
+                {subsections.map((subsection) => (
                     <button
-                        key={category}
-                        onClick={() => scrollToCategory(category)}
-                        data-category={category}
-                        className={activeCategory === category ? `${css.buttonTab} ${css.active}` : `${css.buttonTab}`}
+                        key={subsection.id}
+                        onClick={() => scrollToCategory(subsection.name)}
+                        data-category={subsection.name}
+                        className={activeCategory === subsection.name ? `${css.buttonTab} ${css.active}` : `${css.buttonTab}`}
                     >
-                        {category}
+                        {subsection.name}
                     </button>
                 ))}
             </nav>
 
+            {subsections.map((subsection) => (
+                <section key={subsection.id} id={subsection.name} className={`${css.category} ${activeCategory === subsection.name ? css.active : ''}`}>
+                    <h3 className={css.categoryTitle}>{subsection.name}</h3>
 
-            {categories.map((category) => (
-                <section key={category} id={category} className={`${css.category} ${activeCategory === category ? css.active : ''}`}>
-                    <h3 className={css.categoryTitle}>{category}</h3>
-
-
-                    <DishCard/>
-                    <DishCard/>
-                    <DishCard/>
-                    <DishCard/>
-                    <DishCard/>
-
-
+                    {subsection.dishes.map((dish, key) => (
+                        <DishCard key={`${subsection.id}${dish.id}${key}`} dish={dish} />
+                    ))}
                 </section>
             ))}
         </div>
     );
 };
-
 
 export { SubMenuTabs };

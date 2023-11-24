@@ -9,7 +9,6 @@ const DishCard = () => {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        // Викликаємо сервіс для отримання даних меню компанії
         companyService.getAll()
             .then(response => setMenuData(response.data.menu))
             .catch(error => console.error("Error fetching menu data:", error));
@@ -33,7 +32,6 @@ const DishCard = () => {
 
     return (
         <>
-            {/* Додайте відображення страв та їх опису */}
             <div className={css.dishGrid} onClick={handleClickOpen}>
                 <div className={css.imgWrap}>
                     <div className={css.imgContent}>

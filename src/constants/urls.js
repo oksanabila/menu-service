@@ -1,6 +1,6 @@
 const baseURL = 'http://menu-service.me:8000'
 
-const imgLink = 'http://menu-service.me/'
+const imgLink = 'http://menu-service.me/images/'
 
 
 // "/admin/getcompany" -> "/admin/get_company"

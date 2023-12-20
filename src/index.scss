@@ -11,7 +11,19 @@ body {
 
 button {
   font-family: 'Jost', sans-serif;
+  text-align: center;
+}
 
+.MuiPaper-root, .MuiPaper-root .MuiTypography-root {
+  font-family: 'Jost', sans-serif;
+  text-align: center;
+}
+//button.tab {
+//  font-family: 'Jost', sans-serif;
+//}
+button.MuiButton-outlined,
+button.MuiButton-contained {
+  font-family: 'Jost', sans-serif;
 }
 
 .wrapper {
@@ -19,12 +31,23 @@ button {
   flex-direction: column;
   min-height: 100vh;
   position: relative;
+  //max-width: 720px;
+  //margin: 0 auto;
 }
 .container {
   width: 100%;
   padding-left: 16px;
   padding-right: 16px;
   box-sizing: border-box;
+  &_margin {
+    margin-top: 50px;
+  }
+}
+
+.flexWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .form-item {
@@ -97,3 +120,6 @@ h3 {
 }
 
 
+img {
+  max-width: 100%;
+}

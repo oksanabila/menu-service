@@ -9,3 +9,10 @@
   width: 100%;
   flex-direction: column;
 }
+
+.companyImg {
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+
+/*# sourceMappingURL=CompanyData.module.css.map */

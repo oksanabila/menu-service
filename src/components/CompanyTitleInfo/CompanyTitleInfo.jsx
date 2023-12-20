@@ -24,7 +24,7 @@ const CompanyTitleInfo = () => {
             })
             .catch(error => console.error('Error fetching company data:', error));
     }, []);
-
+    console.log(companyData);
     if (!companyData) {
         return <div>Loading...</div>;
     }
@@ -56,3 +56,5 @@ const CompanyTitleInfo = () => {
 };
 
 export { CompanyTitleInfo };
+
+

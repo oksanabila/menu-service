@@ -14,7 +14,7 @@ const Header = ({ children }) => {
 
             <img src={logoImg} alt={'companyLogo'} className={css.headerLogo}/>
            {/*<div className={'flexWrap'}>*/}
-
+            <button className={'buttonRed'}>Red alert</button>
             <SelectInput  />
            {/*</div>*/}
 

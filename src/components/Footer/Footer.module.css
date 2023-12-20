@@ -7,10 +7,12 @@
   border-top-right-radius: 10px;
   background-color: rgba(0, 0, 0, 0.8);
   order: 3;
-  margin-top: auto; }
+  margin-top: auto;
+}
 
 .footerLink {
   color: #F6F4F4;
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 /*# sourceMappingURL=Footer.module.css.map */

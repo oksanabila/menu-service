@@ -53,38 +53,40 @@ const AuthForm = () => {
     console.log(tokenData);
 
     return (
-        <Box
-            component="form"
-            noValidate
-            autoComplete="off"
-            className={css.formContainer}
-        >
-            <TextField
-                id="outlined-basic"
-                label="name"
-                variant="outlined"
-                margin="normal"
-                name="name"
-                required
-                onChange={handleChange}
-            />
-            <TextField
-                id="outlined-basic"
-                label="password"
-                variant="outlined"
-                margin="normal"
-                name="password"
-                required
-                onChange={handleChange}
-            />
-            <Button
-                variant="contained"
-                color="success"
-                onClick={handleSubmit}
-            >
-                Authorize
-            </Button>
-        </Box>
+      <div className={'container'}>
+          <Box
+              component="form"
+              noValidate
+              autoComplete="off"
+              className={css.formContainer}
+          >
+              <TextField
+                  id="outlined-basic"
+                  label="name"
+                  variant="outlined"
+                  margin="normal"
+                  name="name"
+                  required
+                  onChange={handleChange}
+              />
+              <TextField
+                  id="outlined-basic"
+                  label="password"
+                  variant="outlined"
+                  margin="normal"
+                  name="password"
+                  required
+                  onChange={handleChange}
+              />
+              <Button
+                  variant="contained"
+                  color="success"
+                  onClick={handleSubmit}
+              >
+                  Authorize
+              </Button>
+          </Box>
+      </div>
     );
 };
 

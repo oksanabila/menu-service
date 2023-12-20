@@ -1,7 +1,1 @@
-{
-"version": 3,
-"mappings": "AAAA,SAAU;EAER,KAAK,EAAE,IAAI;;AAgBb,QAAS;EACP,WAAW,EAAE,GAAG;EAChB,SAAS,EAAE,IAAI;EACf,OAAO,EAAE,QAAQ;EACjB,MAAM,EAAE,aAAa;EACrB,aAAa,EAAE,IAAI;EACnB,KAAK,EAAE,OAAO;EAEd,gBAAgB,EAAE,OAAO;EACzB,MAAM,EAAE,iBAAiB;EACzB,8BAAuB;IACrB,gBAAgB,EAAE,KAAK;IACvB,YAAY,EAAE,mBAAmB;IACjC,KAAK,EAAE,mBAAmB",
-"sources": ["MenuTabs.module.scss"],
-"names": [],
-"file": "MenuTabs.module.css"
-}
+{"version":3,"sourceRoot":"","sources":["MenuTabs.module.scss"],"names":[],"mappings":"AAAA;EAEE;;;AAgBF;EACE;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;;AACA;EACE;EACA;EACA","file":"MenuTabs.module.css"}

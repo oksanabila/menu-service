@@ -1,6 +1,7 @@
 .likeBtnContainer {
   width: 80px;
-  margin-top: 10px; }
+  margin-top: 10px;
+}
 
 .likeBtn {
   height: 40px;
@@ -14,10 +15,12 @@
   background-color: white;
   border: 1px solid var(--gray-md);
   border-radius: 4px;
-  cursor: pointer; }
-  .likeBtn.clicked .likeIcon path {
-    fill: var(--active-color);
-    stroke: var(--active-color); }
+  cursor: pointer;
+}
+.likeBtn.clicked .likeIcon path {
+  fill: var(--active-color);
+  stroke: var(--active-color);
+}
 
 .likeBtnCount {
   height: 100%;
@@ -28,7 +31,8 @@
   align-items: center;
   justify-content: center;
   color: #2B2626;
-  border-right: 1px solid var(--gray-md); }
+  border-right: 1px solid var(--gray-md);
+}
 
 .likeIcon {
   height: 100%;
@@ -36,8 +40,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform .225s,scale .225s; }
-  .likeIcon svg {
-    transition: transform .225s,scale .225s; }
+  transition: transform 0.225s, scale 0.225s;
+}
+.likeIcon svg {
+  transition: transform 0.225s, scale 0.225s;
+}
 
 /*# sourceMappingURL=LikeButton.module.css.map */

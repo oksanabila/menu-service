@@ -1,9 +1,12 @@
 .select {
-  background-color: hotpink; }
-  .select .MuiList-root {
-    background-color: hotpink; }
+  background-color: hotpink;
+}
+.select .MuiList-root {
+  background-color: hotpink;
+}
 
 .css-6hp17o-MuiList-root-MuiMenu-list {
-  background-color: hotpink; }
+  background-color: hotpink;
+}
 
 /*# sourceMappingURL=SelectInput.module.css.map */

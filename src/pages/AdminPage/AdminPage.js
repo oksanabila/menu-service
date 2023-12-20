@@ -33,6 +33,7 @@ const AdminPage = () => {
 
     return (
         <>
+            <p>test</p>
             {/*<HeaderAuth isToken={isToken}/>*/}
             <Routes>
                 <Route path="/" element={isToken ? <AdminTabs/> : <AuthForm/>}>

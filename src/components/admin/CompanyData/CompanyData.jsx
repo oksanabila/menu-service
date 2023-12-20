@@ -11,6 +11,18 @@ const CompanyData = (effect, deps) => {
     const { adminService } = SetupApiWithToken();
     const [companyData, setCompanyData] = useState(null);
     // const [treeData, setTreeData] = useState(null);
+    const [initialFormData, setInitialFormData] = useState({
+        id: '',
+        name: '',
+        img: '',
+        title: '',
+        description: '',
+        phone: '',
+        instagram: '',
+        faceBook: '',
+        geoTag: '',
+        address: '',
+    });
     const [formData, setFormData] = useState({
         id: '',
         name: '',
@@ -76,6 +88,24 @@ const CompanyData = (effect, deps) => {
             })
             .catch(error => console.error('Error sending company data:', formData));
     };
+    const handleReset = () => {
+        // setFormData({
+        //     id: '',
+        //     name: '',
+        //     img: '',
+        //     title: '',
+        //     description: '',
+        //     phone: '',
+        //     instagram: '',
+        //     faceBook: '',
+        //     geoTag: '',
+        //     address: '',
+        // });
+        setFormData(formData);
+
+    };
+
+
     // const handleFileChange = (event) => {
     //     const file = event.target.files[0];
     //     const formData = new FormData();
@@ -220,7 +250,7 @@ const CompanyData = (effect, deps) => {
                     <Button
                         variant="outlined"
                         color="error"
-                        onClick={handleSubmit}
+                        onClick={handleReset}
                     >
                         Reset the form
                     </Button>

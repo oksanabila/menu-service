@@ -1,0 +1,20 @@
+.tabsPageContainer {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-column-gap: 50px;
+  margin: 0 30px;
+}
+
+.tabsWrap {
+  padding-top: 40px;
+}
+
+button.tab {
+  font-size: 18px;
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+  color: #2B2626;
+  padding-left: 0;
+}
+
+/*# sourceMappingURL=AdminTabs.module.css.map */

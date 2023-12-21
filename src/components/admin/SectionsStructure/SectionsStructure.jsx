@@ -2,23 +2,12 @@ import React, {useEffect, useState} from 'react';
 
 import css from './SectionsStructure.module.css'
 import Checkbox from '@mui/material/Checkbox';
-import {
-    AppBar, Box,
-    Button,
-    Dialog, DialogContent,
-    GlobalStyles,
-    IconButton,
-    List,
-    ListItem,
-    ListItemText, Slide, TextField,
-    Toolbar,
-    Typography
-} from "@mui/material";
+import {Button} from "@mui/material";
 import {SetupApiWithToken} from "../../../services/apiAdminService";
-import svgClose from "../../../assets/img/close-icon.svg"
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {EditDialog} from "../../Dialog/EditDialog/EditDialog";
 import {ConfirmationDialog} from "../../Dialog/ConfirmationDialog/ConfirmationDialog";
+import {DishForm} from "../DishForm/DishForm";
 
 
 const SectionsStructure = () => {
@@ -38,6 +27,11 @@ const SectionsStructure = () => {
 
     const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
     const [selectedNodeId, setSelectedNodeId] = useState(null);
+    const { dishId } = useParams();
+
+
+
+
     let isStructureTitleRendered = false;
     useEffect(() => {
         adminService.getDishTree()
@@ -120,6 +114,7 @@ const SectionsStructure = () => {
                     <div>
                         {/*<div>{dish.id}</div>*/}
                         <div>{dish.title}</div>
+                        <div>id: {dish.id}</div>
                         <div className={css.price}>{dish.price} &#8364;</div>
                         <div>{dish.weight} </div>
                     </div>
@@ -151,14 +146,21 @@ const SectionsStructure = () => {
         setSelectedNodeId(null);
         setConfirmDialogOpen(false);
     };
-    const handleEditDish = (subsectionId) => {
-        navigate(`/admin/dish/${subsectionId}`);
+    // const handleEditDish = (dishId) => {
+    //     navigate(`/admin/dish-tab/${dishId}`);
+    // };
+    //
+    // const handleCreateDish = (dishId) => {
+    //     navigate('/admin/dish-tab');
+    // };
+
+    const handleEditDish = (dishId) => {
+        navigate(`/admin/menu-tab/dish/${dishId}`);
     };
 
-    const handleCreateDish = (dishId) => {
-        navigate('/admin/dish');
+    const handleCreateDish = () => {
+        navigate('/admin/menu-tab/dish/new');
     };
-
 
     const handleFormChange = (e) => {
         const { name, value } = e.target;
@@ -212,24 +214,17 @@ const SectionsStructure = () => {
         setSelectedItemName(itemName);
         setEditDialogOpen(true);
     };
-
+    if (dishId) {
+        return <DishForm />;
+    }
     return (
         <div className={'container container_margin'}>
-            {/*{treeData && treeData.map(section => (*/}
-            {/*    <div key={section.id}>*/}
-            {/*        {!isStructureTitleRendered && renderStructureTitle(section)}*/}
-            {/*        {renderSection(section)}*/}
-            {/*        {isStructureTitleRendered = true}*/}
-            {/*    </div>*/}
-            {/*))}*/}
-
             {renderStructureTitle()}
             {treeData && treeData.map(section => (
                 <div key={section.id}>
                     {renderSection(section)}
                 </div>
             ))}
-            {/* Edit Dialog */}
             <EditDialog
                 open={editDialogOpen}
                 onClose={() => setEditDialogOpen(false)}
@@ -238,69 +233,11 @@ const SectionsStructure = () => {
                 onFormChange={handleFormChange}
                 onFormSubmit={handleFormSubmit}
             />
-
-            {/* Confirmation Dialog */}
             <ConfirmationDialog
                 open={confirmDialogOpen}
                 onClose={() => handleConfirmation(false)}
                 onConfirm={handleConfirmation}
             />
-
-            {/*{editDialogOpen && (*/}
-            {/*    <Dialog open={editDialogOpen} onClose={() => setEditDialogOpen(false)}>*/}
-            {/*        <Toolbar className={css.toolbar}>*/}
-            {/*            <div className={css.toolbarTitle}>*/}
-            {/*                {dialogTitle}*/}
-            {/*            </div>*/}
-            {/*            <IconButton edge="start" color="inherit" onClick={() => setEditDialogOpen(false)} aria-label="close">*/}
-            {/*                <img src={svgClose} alt="Close Icon" />*/}
-            {/*            </IconButton>*/}
-
-            {/*        </Toolbar>*/}
-
-            {/*        <DialogContent>*/}
-            {/*            <Box*/}
-            {/*                component="form"*/}
-            {/*                noValidate*/}
-            {/*                autoComplete="off"*/}
-            {/*            >*/}
-            {/*                <TextField*/}
-            {/*                    id="outlined-basic"*/}
-            {/*                    fullWidth*/}
-            {/*                    label="Name"*/}
-            {/*                    variant="outlined"*/}
-            {/*                    margin="normal"*/}
-            {/*                    name="name"*/}
-            {/*                    value={formData.name}*/}
-            {/*                    required*/}
-            {/*                    onChange={handleFormChange}*/}
-            {/*                />*/}
-            {/*                <Button*/}
-            {/*                    color="success"*/}
-            {/*                    variant="outlined"*/}
-            {/*                    onClick={handleFormSubmit}*/}
-            {/*                >*/}
-            {/*                    Submit*/}
-            {/*                </Button>*/}
-            {/*            </Box>*/}
-            {/*        </DialogContent>*/}
-            {/*    </Dialog>*/}
-            {/*)}*/}
-
-            {/*/!* Confirmation CustomDialog *!/*/}
-            {/*<Dialog open={confirmDialogOpen} onClose={() => handleConfirmation(false)}>*/}
-            {/*    <DialogContent>*/}
-            {/*        <Typography>*/}
-            {/*            Are you sure you want to change the checkbox state?*/}
-            {/*        </Typography>*/}
-            {/*        <Button onClick={() => handleConfirmation(true)} color="success" variant="outlined">*/}
-            {/*            Confirm*/}
-            {/*        </Button>*/}
-            {/*        <Button onClick={() => handleConfirmation(false)} color="error" variant="outlined">*/}
-            {/*            Cancel*/}
-            {/*        </Button>*/}
-            {/*    </DialogContent>*/}
-            {/*</Dialog>*/}
         </div>
     );
 };

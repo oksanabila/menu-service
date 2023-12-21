@@ -4,17 +4,17 @@ import { LikeButton } from "../LikeButton/LikeButton";
 import { AppBar, Button, Dialog, IconButton, List, ListItem, ListItemText, Slide, Toolbar, Typography } from "@mui/material";
 import {companyService} from "../../services";
 
-const DishCard = () => {
+const DishCard = ({dish}) => {
     const [menuData, setMenuData] = useState(null);
     const [open, setOpen] = useState(false);
-
+console.log(dish);
     useEffect(() => {
         companyService.getAll()
             .then(response => setMenuData(response.data.menu))
             .catch(error => console.error("Error fetching menu data:", error));
     }, []);
 
-    if (!menuData) {
+    if (!dish) {
         return <div>Loading...</div>;
     }
 
@@ -36,11 +36,11 @@ const DishCard = () => {
                 <div className={css.imgWrap}>
                     <div className={css.imgContent}>
                         {/* Ви можете використовувати menuData, щоб отримати дані про страву */}
-                        <div className={css.img} style={{ backgroundImage: `url(${menuData[0]?.subsections[0]?.dishes[0]?.mainImg})` }}></div>
+                        <div className={css.img} style={{ backgroundImage: `url(${dish.mainImg})` }}></div>
                     </div>
                 </div>
                 <div>
-                    <div className={css.dishTitle}>{menuData[0]?.subsections[0]?.dishes[0]?.name}</div>
+                    <div className={css.dishTitle}>{dish.name}</div>
 
                 </div>
             </div>
@@ -65,7 +65,7 @@ const DishCard = () => {
                 </AppBar>
                 <List>
                     <ListItem>
-                        <ListItemText primary={menuData[0]?.subsections[0]?.dishes[0]?.description} />
+                        <ListItemText primary={dish.description} />
                     </ListItem>
                 </List>
             </Dialog>

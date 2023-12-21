@@ -1,1 +1,1 @@
-export * from './companySlice';
+export * from './sectionsSlice';

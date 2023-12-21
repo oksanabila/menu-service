@@ -1,24 +1,25 @@
 import React, {useEffect, useState} from 'react';
 
-
 import {Tab, TabPanel, Tabs, TabsList} from "@mui/base";
 import css from './MenuTabs.module.css'
 import {SubMenuTabs} from "../SubMenuTabs/SubMenuTabs";
 import {companyService} from "../../services";
+import {useParams} from "react-router-dom";
+import {baseURL} from "../../constants";
 
 const MenuTabs = () => {
     const [menuData, setMenuData] = useState(null);
+    const { companyLink } = useParams();
 
     useEffect(() => {
         companyService.getAll()
+        companyService.getAll(`${baseURL}/${companyLink}`)
             .then(response => {
-                console.log('Company Data:', response.data.menu);
-
-                setMenuData(response.data.menu);
+                setMenuData(response.data.data.company_data.menu);
             })
             .catch(error => console.error('Error fetching company data:', error));
-    }, []);
-
+    }, [companyLink]);
+    console.log(menuData);
     return (
         <div className={`${css.tabsWrap} container`}>
             <Tabs defaultValue={`menu`}>
@@ -31,7 +32,8 @@ const MenuTabs = () => {
                 </TabsList>
                 {menuData && menuData.map(category => (
                     <TabPanel key={category.id} value={category.name}>
-                        <SubMenuTabs subsections={category.subsections} />
+
+                        <SubMenuTabs subsections={category.subsections} menuData={menuData} />
                     </TabPanel>
                 ))}
             </Tabs>

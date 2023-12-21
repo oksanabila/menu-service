@@ -1,9 +1,9 @@
 import {configureStore} from "@reduxjs/toolkit";
-import {companyReducer} from "./slices";
+import {sectionsReducer} from "./slices";
 
 const store = configureStore({
     reducer : {
-        company: companyReducer,
+        sections: sectionsReducer,
     },
 })
 

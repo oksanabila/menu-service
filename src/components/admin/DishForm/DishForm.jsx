@@ -3,13 +3,14 @@ import React, {useEffect, useState} from 'react';
 import {Box, Button, TextField} from "@mui/material";
 import css from "../CompanyData/CompanyData.module.css";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import {adminService} from "../../../services/adminService";
 import {styled} from "@mui/material/styles";
 import {SetupApiWithToken} from "../../../services/apiAdminService";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {fetchTreeData} from "../../../redux/slices/sectionsSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 const DishForm = () => {
-    const { subsectionId, id } = useParams();
+    const { dishId} = useParams();
     const { adminService } = SetupApiWithToken();
     const [dishData, setDishData] = useState({
         id: 0,
@@ -25,8 +26,46 @@ const DishForm = () => {
         parentId: 0
     });
     const [imgData, setImgData] = useState(null);
+    console.log(`dish id = ${dishId}`)
+    const navigate = useNavigate();
 
+    const dispatch = useDispatch();
+    const treeData = useSelector(state => state.sections.treeData);
+    const isLoading = useSelector(state => state.sections.isLoading);
 
+    // useEffect(() => {
+    //     dispatch(fetchTreeData());
+    // }, [dispatch]);
+
+    useEffect(() => {
+        if (dishId) {
+            adminService.getDishById(dishId)
+                .then(response => {
+                    const dish = response.data;
+                    setDishData({
+                        companyId: dish.companyId,
+                        id: dish.id,
+                        name: dish.name,
+                        mainImg: dish.mainImg,
+                        description: dish.description,
+                        price: dish.price,
+                        weight: dish.weight,
+                        parentId: dish.parentId
+                    });
+                    console.log(dish);
+                })
+                .catch(error => console.error('Error fetching dish data:', error));
+        }
+    }, [dishId]);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (!dishData) {
+        return <div>No data available</div>;
+    }
+    console.log(dishData);
     const VisuallyHiddenInput = styled('input')({
         clip: 'rect(0 0 0 0)',
         clipPath: 'inset(50%)',
@@ -57,7 +96,6 @@ const DishForm = () => {
             })
             .catch(error => console.error('Error sending company data:', error));
     };
-    console.log(dishData);
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -78,10 +116,18 @@ const DishForm = () => {
         }
     };
 
+    const handleEGoBack = () => {
+        navigate(`/admin/menu-tab`);
+    };
 
     return (
         <div className={'container container_margin'}>
-            <h2>Edit data</h2>
+            <Button
+                variant="outlined"
+                color="success"
+                onClick={() => handleEGoBack()}
+            >Go back</Button>
+            <h2>Edit dish</h2>
             <Box
                 component="form"
                 noValidate
@@ -139,16 +185,6 @@ const DishForm = () => {
                         Upload dish photo
                         <VisuallyHiddenInput type="file" onChange={handleFileChange} name="mainImg"/>
                     </Button>
-
-                    {/*<TextField*/}
-                    {/*    id="outlined-basic"*/}
-                    {/*    label="Media"*/}
-                    {/*    variant="outlined"*/}
-                    {/*    margin="normal"*/}
-                    {/*    name="socialMedia"*/}
-                    {/*    // value={formData.socialMedia}*/}
-                    {/*    // onChange={handleChange}*/}
-                    {/*/>*/}
                     <Button
                         variant="contained"
                         color="success"
@@ -157,33 +193,6 @@ const DishForm = () => {
 fgs                    </Button>
                 </section>
                 <section className={css.formColumn}>
-                    {/*<TextField*/}
-                    {/*    id="outlined-basic"*/}
-                    {/*    label="Phone"*/}
-                    {/*    variant="outlined"*/}
-                    {/*    margin="normal"*/}
-                    {/*    name="contactPhone"*/}
-                    {/*    // value={formData.contactPhone}*/}
-                    {/*    // onChange={handleChange}*/}
-                    {/*/>*/}
-                    {/*<TextField*/}
-                    {/*    id="outlined-basic"*/}
-                    {/*    label="Address"*/}
-                    {/*    variant="outlined"*/}
-                    {/*    margin="normal"*/}
-                    {/*    name="contactAddress"*/}
-                    {/*    // value={formData.contactAddress}*/}
-                    {/*    onChange={handleChange}*/}
-                    {/*/>*/}
-                    {/*<TextField*/}
-                    {/*    id="outlined-basic"*/}
-                    {/*    label="On map"*/}
-                    {/*    variant="outlined"*/}
-                    {/*    margin="normal"*/}
-                    {/*    name="geoTag"*/}
-                    {/*    // value={formData.geoTag}*/}
-                    {/*    onChange={handleChange}*/}
-                    {/*/>*/}
 
                     <Button
                         variant="contained"
@@ -198,27 +207,7 @@ fgs                    </Button>
     );
 };
 
-export default DishForm;
+export {DishForm};
 
 
-// useEffect(() => {
-//     if (id) {
-//         // Если есть параметр id в URL, загрузите данные из API для блюда с этим id
-//         adminService.getDishById(id)
-//             .then(response => {
-//                 const dish = response.data; // Предположим, что API возвращает объект с данными блюда
-//                 setDishData({
-//                     companyId: dish.companyId,
-//                     id: dish.id,
-//                     name: dish.name,
-//                     mainImg: dish.mainImg,
-//                     description: dish.description,
-//                     price: dish.price,
-//                     weight: dish.weight,
-//                     parentId: dish.parentId
-//                 });
-//             })
-//             .catch(error => console.error('Error fetching dish data:', error));
-//     }
-// }, [id]); // Зависимость от id, чтобы обновить данные при изменении id в URL
 

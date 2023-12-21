@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import css from './SubMenuTabs.module.css';
 import { DishCard } from "../DishCard/DishCard";
 
-const SubMenuTabs = ({ subsections }) => {
+const SubMenuTabs = ({ subsections, menuData }) => {
     const [activeCategory, setActiveCategory] = useState(subsections[0]?.name || '');
     const containerRef = useRef(null);
     const verticalPadding = 60;

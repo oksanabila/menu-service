@@ -105,7 +105,10 @@ const SetupApiWithToken = () => {
                     'Content-Type': 'application/json',
                 },
             });
-        }
+        },
+
+        getDishById: (dishId) => apiAdminService.get(urls.admin.getDishById(dishId)),
+
         // updateToken: (data) => {
         //     apiAdminService.get(urls.admin.updateToken(data), )
         // }

@@ -105,4 +105,12 @@ img {
   max-width: 100%;
 }
 
+input.MuiInputBase-input {
+  font-family: "Jost", sans-serif;
+}
+
+input#outlined-basic::placeholder {
+  font-family: "Jost", sans-serif;
+}
+
 /*# sourceMappingURL=index.css.map */

@@ -13,7 +13,7 @@ const imgLink = 'http://menu-service.me/images/'
 // "/admin/uploadfile/" -> "/admin/upload_file/"
 // "/signup" -> "/sign_up"
 
-const company = '/testcompany'//TODO
+// const company = '/testcompany'//TODO
 const admin = '/admin/get_company'
 const cmcompany = '/admin/create_modify_company'
 const getDishTree = '/admin/get_dish_tree'
@@ -27,7 +27,8 @@ const getDish = '/admin/get_dish'
 
 const urls = {
     company: {
-        getAll: () => `${company}`
+        getAll: (companyLink) => `${companyLink}`
+
     },
     admin: {
         getAll: () => `${admin}`,
@@ -38,6 +39,7 @@ const urls = {
         uploadFile: () => `${uploadFile}`,
         token: () => `${token}`,
         updateToken: () => `${updateToken}`,
+        getDishById: (dishId) => `${getDish}?id=${dishId}`,
         // boundary: () => `${boundary}`
     }
 }

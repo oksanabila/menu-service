@@ -37,13 +37,34 @@ const CompanyData = (effect, deps) => {
     });
 
 
+    // useEffect(() => {
+    //     adminService.getAll()
+    //         .then(response => {
+    //             console.log('Company Data:', response.data);
+    //             setCompanyData(response.data);
+    //
+    //             setFormData({
+    //                 id: response.data.id || '',
+    //                 name: response.data.name || '',
+    //                 img: response.data.img || '',
+    //                 title: response.data.title || '',
+    //                 description: response.data.description || '',
+    //                 phone: response.data.phone || '',
+    //                 instagram: response.data.instagram || '',
+    //                 faceBook: response.data.faceBook || '',
+    //                 geoTag: response.data.geoTag || '',
+    //                 address: response.data.address || '',
+    //             });
+    //         })
+    //         .catch(error => console.error('Error fetching company data:', error));
+    // }, []);
     useEffect(() => {
         adminService.getAll()
             .then(response => {
-                console.log('Company Data:', response.data);
+                // console.log('Company Data:', response.data);
                 setCompanyData(response.data);
 
-                setFormData({
+                const initialData = {
                     id: response.data.id || '',
                     name: response.data.name || '',
                     img: response.data.img || '',
@@ -54,7 +75,10 @@ const CompanyData = (effect, deps) => {
                     faceBook: response.data.faceBook || '',
                     geoTag: response.data.geoTag || '',
                     address: response.data.address || '',
-                });
+                };
+
+                setInitialFormData(initialData);
+                setFormData(initialData);
             })
             .catch(error => console.error('Error fetching company data:', error));
     }, []);
@@ -89,20 +113,7 @@ const CompanyData = (effect, deps) => {
             .catch(error => console.error('Error sending company data:', formData));
     };
     const handleReset = () => {
-        // setFormData({
-        //     id: '',
-        //     name: '',
-        //     img: '',
-        //     title: '',
-        //     description: '',
-        //     phone: '',
-        //     instagram: '',
-        //     faceBook: '',
-        //     geoTag: '',
-        //     address: '',
-        // });
-        setFormData(formData);
-
+        setFormData(initialFormData);
     };
 
 
@@ -164,7 +175,7 @@ const CompanyData = (effect, deps) => {
                         name="name"
                         value={formData.name}
                         required
-                        onDragLeave={handleChange}
+                        onChange={handleChange}
                     />
 
                     <TextField
@@ -175,7 +186,7 @@ const CompanyData = (effect, deps) => {
                         margin="normal"
                         name="title"
                         value={formData.title}
-                        onDragLeave={handleChange}
+                        onChange={handleChange}
                     />
                     <TextField
                         margin="normal"
@@ -185,14 +196,17 @@ const CompanyData = (effect, deps) => {
                         rows={7}
                         name="description"
                         value={formData.description}
-                        onDragLeave={handleChange}
+                        onChange={handleChange}
                     />
                     <Button component="label" variant="outlined" color="success" startIcon={<CloudUploadIcon />}>
                         Upload new photo
                         <VisuallyHiddenInput type="file" onChange={handleFileChange} name="img"/>
                     </Button>
-                    <p>current photo:</p>
-                    <img src={`${imgLink}${formData.img}`} alt={formData.img} className={css.companyImg}/>
+                    <div className={css.imgWrap}>
+                        <p>current photo:</p>
+                        <img src={`${imgLink}${formData.img}`} alt={formData.img} className={css.companyImg}/>
+                    </div>
+
 
 
                 </section>
@@ -205,7 +219,7 @@ const CompanyData = (effect, deps) => {
                         name="phone"
                         required
                         value={formData.phone}
-                        onDragLeave={handleChange}
+                        onChange={handleChange}
                     />
                     <TextField
                         id="outlined-basic"
@@ -215,7 +229,7 @@ const CompanyData = (effect, deps) => {
                         name="address"
                         required
                         value={formData.address}
-                        onDragLeave={handleChange}
+                        onChange={handleChange}
                     />
                     <TextField
                         id="outlined-basic"
@@ -224,7 +238,7 @@ const CompanyData = (effect, deps) => {
                         margin="normal"
                         name="instagram"
                         value={formData.instagram}
-                        onDragLeave={handleChange}
+                        onChange={handleChange}
                     />
                     <TextField
                         id="outlined-basic"
@@ -233,7 +247,7 @@ const CompanyData = (effect, deps) => {
                         margin="normal"
                         name="faceBook"
                         value={formData.faceBook}
-                        onDragLeave={handleChange}
+                        onChange={handleChange}
                     />
                     <TextField
                         id="outlined-basic"
@@ -242,7 +256,7 @@ const CompanyData = (effect, deps) => {
                         margin="normal"
                         name="geoTag"
                         value={formData.geoTag}
-                        onDragLeave={handleChange}
+                        onChange={handleChange}
                     />
 
                 </section>
@@ -252,7 +266,7 @@ const CompanyData = (effect, deps) => {
                         color="error"
                         onClick={handleReset}
                     >
-                        Reset the form
+                        Cancel
                     </Button>
                 </section>
                 <section className={css.formColumn}>
@@ -261,7 +275,7 @@ const CompanyData = (effect, deps) => {
                         color="success"
                         onClick={handleSubmit}
                     >
-                        Send data
+                        Save
                     </Button>
                 </section>
             </Box>

@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 import { Box, Button, TextField } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import css from "./AuthForm.module.css";
-import {adminService} from "../../../services/adminService";
 import {useCookies} from "react-cookie";
 import {SetupApiWithToken} from "../../../services/apiAdminService";
 

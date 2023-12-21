@@ -4,6 +4,7 @@ import {Header} from "../../components/Header/Header";
 import {CompanyTitleInfo} from "../../components/CompanyTitleInfo/CompanyTitleInfo";
 import {Footer} from "../../components/Footer/Footer";
 import cssHeader from "../../components/Header/Header.module.css"
+import {useParams} from "react-router-dom";
 
 const MainLayout = () => {
     return (

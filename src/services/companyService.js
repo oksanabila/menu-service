@@ -2,7 +2,7 @@ import {apiService} from "./apiService";
 import {urls} from "../constants";
 
 const companyService = {
-    getAll: () => apiService.get(urls.company.getAll()),
+    getAll: (companyLink) => apiService.get(urls.company.getAll(companyLink)),
 
 }
 

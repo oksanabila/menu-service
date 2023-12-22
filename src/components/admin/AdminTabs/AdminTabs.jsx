@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
+
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import css from './AdminTabs.module.css';
-import {DishForm} from '../DishForm/DishForm';
 import {CompanyData} from '../CompanyData/CompanyData';
 import SectionsStructure from '../SectionsStructure/SectionsStructure';
 import { createTheme } from '@mui/material/styles';
-import {Button, ThemeProvider} from "@mui/material";
+import {Button, Container, ThemeProvider} from "@mui/material";
 import * as PropTypes from "prop-types";
 import {useCookies} from "react-cookie";
 import {Header} from "../../Header/Header";
@@ -45,7 +45,7 @@ function AdminTabs() {
     }, [location.pathname]);
 
     const handleChange = (_, newValue) => {
-        const newPath = tabs[newValue].path;
+        // const newPath = tabs[newValue].path;
         // navigate(`../${newPath}`);
         navigate(`/admin/${tabs[newValue].path}`);
 
@@ -66,23 +66,26 @@ function AdminTabs() {
                     >Exit</Button>
                 </ThemeProvider>
             </Header>
-            <section className={css.tabsPageContainer}>
-                <ThemeProvider theme={theme}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }} className={css.tabsWrap}>
-                        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" orientation="vertical" textColor="secondary"
-                              indicatorColor="secondary">
-                            {tabs.map((tab, index) => (
-                                <Tab key={index} label={tab.label} id={`tab-${index}`} aria-labelledby={`tab-${index}`}  className={css.tab}/>
-                            ))}
-                        </Tabs>
-                    </Box>
-                </ThemeProvider>
-                <div className={css.tabsPanelWrap}>
-                    {value === 0 && <CompanyData />}
-                    {value === 1 && <SectionsStructure />}
-                    {/*{value === 2 && <DishForm />}*/}
-                </div>
-            </section>
+            <Container maxWidth="xl">
+                <section className={css.tabsPageContainer}>
+                    <ThemeProvider theme={theme}>
+                        <Box sx={{ borderBottom: 1, borderColor: 'divider' }} className={css.tabsWrap}>
+                            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" orientation="vertical" textColor="secondary"
+                                  indicatorColor="secondary">
+                                {tabs.map((tab, index) => (
+                                    <Tab key={index} label={tab.label} id={`tab-${index}`} aria-labelledby={`tab-${index}`}  className={css.tab}/>
+                                ))}
+                            </Tabs>
+                        </Box>
+                    </ThemeProvider>
+                    <div className={css.tabsPanelWrap}>
+                        {value === 0 && <CompanyData />}
+                        {value === 1 && <SectionsStructure />}
+                        {/*{value === 2 && <DishForm />}*/}
+                    </div>
+                </section>
+            </Container>
+
         </>
     );
 }

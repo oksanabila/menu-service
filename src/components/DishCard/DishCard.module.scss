@@ -78,3 +78,47 @@
   letter-spacing: -0.2px;
   color: #2f3c38;
 }
+
+.dialogContent {
+  padding: 20px;
+}
+
+.dishImageContainer {
+  text-align: center; /* Центрирование изображения */
+}
+
+.dishImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px; /* Скругление углов изображения если нужно */
+}
+
+.dishDetails {
+  margin-top: 20px;
+}
+
+.dishTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.dishDescription {
+  margin: 10px 0;
+}
+
+.dishPriceWeight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dishPrice {
+  font-size: 1.5rem;
+  color: #EAB308; /* Цвет цены */
+  font-weight: bold;
+}
+
+.dishWeight {
+  font-size: 1rem;
+  color: #6B7280; /* Цвет веса */
+}

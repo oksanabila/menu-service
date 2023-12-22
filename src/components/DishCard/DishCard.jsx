@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import css from './DishCard.module.css';
-import { LikeButton } from "../LikeButton/LikeButton";
-import { AppBar, Button, Dialog, IconButton, List, ListItem, ListItemText, Slide, Toolbar, Typography } from "@mui/material";
+
 import {companyService} from "../../services";
+import {imgLink} from '../../constants/index'
+import css from './DishCard.module.css';
+import { Dialog, IconButton, Slide, Typography } from "@mui/material";
+
 
 const DishCard = ({dish}) => {
     const [menuData, setMenuData] = useState(null);
     const [open, setOpen] = useState(false);
-console.log(dish);
     useEffect(() => {
         companyService.getAll()
             .then(response => setMenuData(response.data.menu))
@@ -35,8 +36,7 @@ console.log(dish);
             <div className={css.dishGrid} onClick={handleClickOpen}>
                 <div className={css.imgWrap}>
                     <div className={css.imgContent}>
-                        {/* Ви можете використовувати menuData, щоб отримати дані про страву */}
-                        <div className={css.img} style={{ backgroundImage: `url(${dish.mainImg})` }}></div>
+                        <div className={css.img} style={{ backgroundImage: `url(${imgLink}/${dish.mainImg})` }}></div>
                     </div>
                 </div>
                 <div>
@@ -45,29 +45,66 @@ console.log(dish);
                 </div>
             </div>
 
-            <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-                <AppBar sx={{ position: 'relative' }}>
-                    <Toolbar>
-                        <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="18" cy="18" r="17.5" fill="#2B2626" />
-                                <path d="M9 27L27 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M27 27L9 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </IconButton>
-                        <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                            Sound
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                TransitionComponent={Transition}
+                PaperProps={{
+                    style: {
+                        height: '75vh',
+                        overflowY: 'auto'
+                    }
+                }}
+                sx={{
+                    '& .MuiBackdrop-root': {
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    },
+                    '& .MuiPaper-root': {
+                        position: 'absolute',
+                        top: '25%',
+                        margin: '0',
+                        width: '100%',
+                        borderRadius: 0
+                    }
+                }}
+            >
+                <IconButton
+                    edge="start"
+                    color="inherit"
+                    onClick={handleClose}
+                    aria-label="close"
+                    sx={{
+                        position: 'absolute',
+                        right: 8,
+                        top: 8,
+                        color: (theme) => theme.palette.grey[500],
+                    }}
+                >
+                </IconButton>
+
+                <div className={css.dialogContent}>
+                    <div className={css.dishImageContainer}>
+                        <img src={`${imgLink}/${dish.mainImg}`} alt={dish.name} className={css.dishImage} />
+                    </div>
+
+                    <div className={css.dishDetails}>
+                        <Typography variant="h5" component="h2" className={css.dishTitle}>
+                            {dish.name}
                         </Typography>
-                        <Button autoFocus color="inherit" onClick={handleClose}>
-                            save
-                        </Button>
-                    </Toolbar>
-                </AppBar>
-                <List>
-                    <ListItem>
-                        <ListItemText primary={dish.description} />
-                    </ListItem>
-                </List>
+                        <Typography variant="body1" className={css.dishDescription}>
+                            {dish.description}
+                        </Typography>
+
+                        <div className={css.dishPriceWeight}>
+                            <Typography variant="h6" className={css.dishPrice}>
+                                {dish.price} €
+                            </Typography>
+                            <Typography variant="subtitle1" className={css.dishWeight}>
+                                {dish.weight}gr
+                            </Typography>
+                        </div>
+                    </div>
+                </div>
             </Dialog>
         </>
     );

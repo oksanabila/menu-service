@@ -13,6 +13,14 @@ button {
   text-align: center;
 }
 
+input.MuiInputBase-input {
+  font-family: "Jost", sans-serif;
+}
+
+input#outlined-basic::placeholder {
+  font-family: "Jost", sans-serif;
+}
+
 .MuiPaper-root, .MuiPaper-root .MuiTypography-root {
   font-family: "Jost", sans-serif;
   text-align: center;
@@ -37,7 +45,7 @@ button.MuiButton-contained {
   box-sizing: border-box;
 }
 .container_margin {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .flexWrap {
@@ -103,14 +111,6 @@ h3 {
 
 img {
   max-width: 100%;
-}
-
-input.MuiInputBase-input {
-  font-family: "Jost", sans-serif;
-}
-
-input#outlined-basic::placeholder {
-  font-family: "Jost", sans-serif;
 }
 
 /*# sourceMappingURL=index.css.map */

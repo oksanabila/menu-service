@@ -3,21 +3,19 @@ import React from 'react';
 import css from './Header.module.css';
 import {SelectInput} from "../SelectInput/SelectInput";
 import logoImg from "../../assets/img/rest-icon.svg";
-import {SideMenu} from "../SideMenu/SideMenu";
 import PropTypes from "prop-types";
+import {Container} from "@mui/material";
 
-const Header = ({ children }) => {
-
+const Header = ({children}) => {
     return (
-        <header className={`${css.header} container`}>
-            {children}
-
-            <img src={logoImg} alt={'companyLogo'} className={css.headerLogo}/>
-           {/*<div className={'flexWrap'}>*/}
-            <SelectInput  />
-           {/*</div>*/}
-
-            {/*<SideMenu/>*/}
+        <header className={`${css.header}`}>
+            <Container maxWidth="xl">
+             <div className={'flexWrap'}>
+                 <SelectInput/>
+                 <img src={logoImg} alt={'companyLogo'} className={css.headerLogo}/>
+                 {children}
+             </div>
+            </Container>
         </header>
     );
 };

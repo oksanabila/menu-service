@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 import { Box, Button, TextField } from "@mui/material";
 import css from './CompanyData.module.css';
-import {adminService, SetupApiWithToken} from "../../../services/apiAdminService";
-import { styled } from '@mui/material/styles';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import {useCookies} from "react-cookie";
-import {imgLink} from '../../../constants/index'
+import {SetupApiWithToken} from "../../../services/apiAdminService";
+import {LoadPhotoInput} from "../LoadPhotoInput/LoadPhotoInput";
+
+
 const CompanyData = (effect, deps) => {
     const { adminService } = SetupApiWithToken();
     const [companyData, setCompanyData] = useState(null);
@@ -36,28 +35,8 @@ const CompanyData = (effect, deps) => {
         address: '',
     });
 
+    console.log(companyData);
 
-    // useEffect(() => {
-    //     adminService.getAll()
-    //         .then(response => {
-    //             console.log('Company Data:', response.data);
-    //             setCompanyData(response.data);
-    //
-    //             setFormData({
-    //                 id: response.data.id || '',
-    //                 name: response.data.name || '',
-    //                 img: response.data.img || '',
-    //                 title: response.data.title || '',
-    //                 description: response.data.description || '',
-    //                 phone: response.data.phone || '',
-    //                 instagram: response.data.instagram || '',
-    //                 faceBook: response.data.faceBook || '',
-    //                 geoTag: response.data.geoTag || '',
-    //                 address: response.data.address || '',
-    //             });
-    //         })
-    //         .catch(error => console.error('Error fetching company data:', error));
-    // }, []);
     useEffect(() => {
         adminService.getAll()
             .then(response => {
@@ -84,18 +63,6 @@ const CompanyData = (effect, deps) => {
     }, []);
 
 
-    const VisuallyHiddenInput = styled('input')({
-        clip: 'rect(0 0 0 0)',
-        clipPath: 'inset(50%)',
-        height: 1,
-        overflow: 'hidden',
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        whiteSpace: 'nowrap',
-        width: 1,
-    });
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevData => ({
@@ -116,45 +83,12 @@ const CompanyData = (effect, deps) => {
         setFormData(initialFormData);
     };
 
-
-    // const handleFileChange = (event) => {
-    //     const file = event.target.files[0];
-    //     const formData = new FormData();
-    //
-    //     if (file) {
-    //         formData.append('file', file, file.name);
-    //         adminService.uploadFile(formData)
-    //             .then(response => {
-    //                 console.log('Data sent successfully:', response.data);
-    //                 setDishData({
-    //                     mainImg: response.data.filename
-    //                 })
-    //                 console.log('dishData:', dishData);
-    //
-    //             })
-    //             .catch(error => console.error('Error sending company data:', error));
-    //     }
-    // };
-
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        const newFormData = new FormData();
-
-        if (file) {
-            newFormData.append('file', file, file.name);
-            adminService.uploadFile(newFormData)
-                .then(response => {
-                    console.log('Data sent successfully:', response.data);
-                    setFormData(prevData => ({
-                        ...prevData,
-                        img: response.data.filename
-                    }));
-                })
-                .catch(error => console.error('Error sending company data:', error));
-        }
+    const handleUploadSuccess = (filename) => {
+        setFormData(prevData => ({
+            ...prevData,
+            img: filename
+        }));
     };
-
-
     return (
         <div className={'container container_margin'}>
 
@@ -177,12 +111,11 @@ const CompanyData = (effect, deps) => {
                         required
                         onChange={handleChange}
                     />
-
                     <TextField
                         id="outlined-multiline-static"
                         label="Short description"
                         multiline
-                        rows={4}
+                        rows={2}
                         margin="normal"
                         name="title"
                         value={formData.title}
@@ -193,22 +126,16 @@ const CompanyData = (effect, deps) => {
                         id="outlined-multiline-static"
                         label="About"
                         multiline
-                        rows={7}
+                        rows={4}
                         name="description"
                         value={formData.description}
                         onChange={handleChange}
                     />
-                    <Button component="label" variant="outlined" color="success" startIcon={<CloudUploadIcon />}>
-                        Upload new photo
-                        <VisuallyHiddenInput type="file" onChange={handleFileChange} name="img"/>
-                    </Button>
-                    <div className={css.imgWrap}>
-                        <p>current photo:</p>
-                        <img src={`${imgLink}${formData.img}`} alt={formData.img} className={css.companyImg}/>
-                    </div>
-
-
-
+                    <LoadPhotoInput
+                        onUploadSuccess={handleUploadSuccess}
+                        label="Upload new photo"
+                        currentImageUrl={formData.img}
+                    />
                 </section>
                 <section className={css.formColumn}>
                     <TextField
@@ -258,8 +185,9 @@ const CompanyData = (effect, deps) => {
                         value={formData.geoTag}
                         onChange={handleChange}
                     />
+                    </section>
 
-                </section>
+
                 <section className={css.formColumn}>
                     <Button
                         variant="outlined"
@@ -278,7 +206,21 @@ const CompanyData = (effect, deps) => {
                         Save
                     </Button>
                 </section>
+
             </Box>
+            <div className={css.formContainer}>
+
+                <section className={css.formColumn}>
+                    <h3>QR-code information</h3>
+                    <h4>Your restaurant link:<br/>{`http://menu-service.me/${companyData.link}`}</h4>
+                    <p>You can print this QR-code and use it in your restaurant to access the menu</p>
+                </section>
+                <section className={css.formColumn}>
+                    <div className={css.formItemWrap}>
+                        <img className={css.qrImg} src={`https://barcode.tec-it.com/barcode.ashx?data=http://menu-service.me/${companyData.link}&code=MobileQRCode&translate-esc=on&imagetype=Svg&eclevel=L`}/>
+                    </div>
+                </section>
+            </div>
         </div>
     );
 };

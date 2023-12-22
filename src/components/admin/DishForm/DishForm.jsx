@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 
-import {Box, Button, TextField} from "@mui/material";
+import {Box, Button, InputLabel, TextField} from "@mui/material";
 import css from "../CompanyData/CompanyData.module.css";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import {styled} from "@mui/material/styles";
 import {SetupApiWithToken} from "../../../services/apiAdminService";
 import {useNavigate, useParams} from "react-router-dom";
-import {fetchTreeData} from "../../../redux/slices/sectionsSlice";
 import {useDispatch, useSelector} from "react-redux";
+import {LoadPhotoInput} from "../LoadPhotoInput/LoadPhotoInput";
+import {fetchTreeData} from "../../../redux";
+import {FormControl, MenuItem} from "@mui/base";
+import Select from "react-select";
 
 const DishForm = () => {
     const { dishId} = useParams();
@@ -25,17 +26,56 @@ const DishForm = () => {
         // isSpicy: 0,
         parentId: 0
     });
-    const [imgData, setImgData] = useState(null);
+    const [initialDishData, setInitialDishData] = useState({
+        id: 0,
+        name: '',
+        mainImg: '',
+        // "sliderImgs": [],
+        description: '',
+        price: 0,
+        weight: 0,
+        // "ingredients": [],
+        // "specialMarks": [],
+        // isSpicy: 0,
+        parentId: 0
+    });
+    // const [imgData, setImgData] = useState(null);
     console.log(`dish id = ${dishId}`)
     const navigate = useNavigate();
+    const [treeData, setTreeData] = useState(null);
 
-    const dispatch = useDispatch();
-    const treeData = useSelector(state => state.sections.treeData);
+    // const dispatch = useDispatch();
+    // const treeData = useSelector(state => state.sections.treeData);
     const isLoading = useSelector(state => state.sections.isLoading);
 
     // useEffect(() => {
     //     dispatch(fetchTreeData());
     // }, [dispatch]);
+
+    // useEffect(() => {
+    //     if (treeData && !treeData.length) {
+    //         dispatch(fetchTreeData());
+    //     }
+    //     // Загрузка данных о блюде
+    // }, [dispatch, dishId]);
+
+    useEffect(() => {
+        adminService.getDishTree()
+            .then(response => {
+                setTreeData(response.data.dataTree);
+            })
+            .catch(error => console.error('Error fetching company data:', error));
+    }, []);
+
+    useEffect(() => {
+        if (treeData && treeData.length > 0) {
+            const parentSection = findParentSection(treeData, dishData.parentId);
+            if (parentSection) {
+                console.log('Найденная родительская секция:', parentSection.title);
+            }
+        }
+    }, [treeData, dishData.parentId]);
+
 
     useEffect(() => {
         if (dishId) {
@@ -52,11 +92,13 @@ const DishForm = () => {
                         weight: dish.weight,
                         parentId: dish.parentId
                     });
+                    setInitialDishData(dish);
                     console.log(dish);
                 })
                 .catch(error => console.error('Error fetching dish data:', error));
         }
     }, [dishId]);
+    console.log(treeData);
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -66,18 +108,6 @@ const DishForm = () => {
         return <div>No data available</div>;
     }
     console.log(dishData);
-    const VisuallyHiddenInput = styled('input')({
-        clip: 'rect(0 0 0 0)',
-        clipPath: 'inset(50%)',
-        height: 1,
-        overflow: 'hidden',
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        whiteSpace: 'nowrap',
-        width: 1,
-    });
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -97,37 +127,51 @@ const DishForm = () => {
             .catch(error => console.error('Error sending company data:', error));
     };
 
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        const formData = new FormData();
+    const handleUploadSuccess = (filename) => {
+        setDishData(prevData => ({
+            ...prevData,
+            mainImg: filename
+        }));
+    };
 
-        if (file) {
-            formData.append('file', file, file.name);
-            adminService.uploadFile(formData)
-                .then(response => {
-                    console.log('Data sent successfully:', response.data);
-                    setDishData({
-                        mainImg: response.data.filename
-                    })
-                    console.log('dishData:', dishData);
-
-                })
-                .catch(error => console.error('Error sending company data:', error));
-        }
+    const handleReset = () => {
+        setDishData(initialDishData);
     };
 
     const handleEGoBack = () => {
         navigate(`/admin/menu-tab`);
     };
 
+    const findParentSection = (sections, parentId) => {
+        if (!Array.isArray(sections)) {
+            return null;
+        }
+
+        for (const section of sections) {
+            if (section.id === parentId) return section;
+            if (section.children) {
+                const found = section.children.find(child => child.id === parentId);
+                if (found) return section;
+            }
+        }
+        return null;
+    };
+
+    const sectionOptions = treeData ? treeData.flatMap(section => [
+        { value: section.id, label: section.title },
+        ...section.children.map(child => ({ value: child.id, label: `-- ${child.title}` }))
+    ]) : [];
     return (
         <div className={'container container_margin'}>
-            <Button
-                variant="outlined"
-                color="success"
-                onClick={() => handleEGoBack()}
-            >Go back</Button>
-            <h2>Edit dish</h2>
+          <div className={'flexWrap'}>
+              <h2>Edit dish</h2>
+
+              <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={() => handleEGoBack()}
+              >Go back</Button>
+          </div>
             <Box
                 component="form"
                 noValidate
@@ -141,19 +185,18 @@ const DishForm = () => {
                         variant="outlined"
                         margin="normal"
                         name="name"
-                        // value={formData.companyName}
+                        value={dishData.name}
                         onChange={handleChange}
                     />
 
                     <TextField
-                        margin="normal"
                         id="outlined-multiline-static"
                         label="Description"
                         multiline
                         rows={4}
                         margin="normal"
                         name="description"
-                        // value={formData.shortDescription}
+                        value={dishData.description}
                         onChange={handleChange}
                     />
 
@@ -164,7 +207,7 @@ const DishForm = () => {
                         margin="normal"
                         name="weight"
                         type="number"
-                        // value={formData.companyName}
+                        value={dishData.weight}
                         onChange={handleChange}
                     />
 
@@ -175,25 +218,44 @@ const DishForm = () => {
                         margin="normal"
                         name="price"
                         type="number"
-                        // value={formData.companyName}
+                        value={dishData.price}
                         onChange={handleChange}
                     />
 
 
 
-                    <Button component="label" variant="outlined" color="success" startIcon={<CloudUploadIcon />}>
-                        Upload dish photo
-                        <VisuallyHiddenInput type="file" onChange={handleFileChange} name="mainImg"/>
-                    </Button>
-                    <Button
-                        variant="contained"
-                        color="success"
-                        // onClick={handleSubmit}
-                    >
-fgs                    </Button>
                 </section>
                 <section className={css.formColumn}>
-
+                    <FormControl margin="normal">
+                        <InputLabel id="section-select-label">Section</InputLabel>
+                        <Select
+                            labelId="section-select-label"
+                            id="section-select"
+                            value={dishData.parentId}
+                            label="Section"
+                            onChange={(e) => setDishData({...dishData, parentId: e.target.value})}
+                        >
+                            {sectionOptions.map(option => (
+                                <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                    <LoadPhotoInput
+                        onUploadSuccess={handleUploadSuccess}
+                        label="Upload new photo"
+                        currentImageUrl={dishData.mainImg}
+                    />
+                </section>
+                <section className={css.formColumn}>
+                    <Button
+                        variant="outlined"
+                        color="error"
+                        onClick={handleReset}
+                    >
+                        Cancel
+                    </Button>
+                </section>
+                <section className={css.formColumn}>
                     <Button
                         variant="contained"
                         color="success"

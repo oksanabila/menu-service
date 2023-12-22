@@ -1,0 +1,21 @@
+.imgWrap {
+  border: 1px solid #c4c4c4;
+  border-radius: 4px;
+  padding: 15px;
+  margin: 22px 0 8px 0;
+  & span {
+    color: gray;
+    font-size: 14px;
+  }
+}
+
+
+.companyImg {
+  max-height: 250px;
+  margin: 0 auto;
+  display: grid;
+}
+
+.btnMargin {
+  margin: 16px 0 8px 0;
+}

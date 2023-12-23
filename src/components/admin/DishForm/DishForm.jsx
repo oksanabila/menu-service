@@ -76,7 +76,6 @@ const DishForm = () => {
         }
     }, [treeData, dishData.parentId]);
 
-
     useEffect(() => {
         if (dishId) {
             adminService.getDishById(dishId)

@@ -35,14 +35,14 @@ const CompanyData = (effect, deps) => {
         address: '',
     });
 
-    console.log(companyData);
 
     useEffect(() => {
         adminService.getAll()
             .then(response => {
                 // console.log('Company Data:', response.data);
-                setCompanyData(response.data);
+                console.log(response.data);
 
+                setCompanyData(response.data);
                 const initialData = {
                     id: response.data.id || '',
                     name: response.data.name || '',
@@ -54,6 +54,7 @@ const CompanyData = (effect, deps) => {
                     faceBook: response.data.faceBook || '',
                     geoTag: response.data.geoTag || '',
                     address: response.data.address || '',
+                    link: response.data.link || '',
                 };
 
                 setInitialFormData(initialData);
@@ -62,6 +63,7 @@ const CompanyData = (effect, deps) => {
             .catch(error => console.error('Error fetching company data:', error));
     }, []);
 
+    console.log(companyData);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -91,8 +93,13 @@ const CompanyData = (effect, deps) => {
     };
     return (
         <div className={'container container_margin'}>
+            <div className={'flexWrap'}>
+                {/*<div className={css.formItemWrap}>*/}
+                    <img className={css.qrImg} src={`https://barcode.tec-it.com/barcode.ashx?data=http://menu-service.me/${formData.link}&code=MobileQRCode&translate-esc=on&imagetype=Svg&eclevel=L`}/>
+                {/*</div>*/}
+                <h2>{formData.name}</h2>
 
-            <h2>{formData.name}</h2>
+            </div>
             {/*<h3>edit data</h3>*/}
             <Box
                 component="form"
@@ -208,19 +215,21 @@ const CompanyData = (effect, deps) => {
                 </section>
 
             </Box>
-            <div className={css.formContainer}>
+            {/*<div className={css.formContainer}>*/}
 
-                <section className={css.formColumn}>
-                    <h3>QR-code information</h3>
-                    <h4>Your restaurant link:<br/>{`http://menu-service.me/${companyData.link}`}</h4>
-                    <p>You can print this QR-code and use it in your restaurant to access the menu</p>
-                </section>
-                <section className={css.formColumn}>
-                    <div className={css.formItemWrap}>
-                        <img className={css.qrImg} src={`https://barcode.tec-it.com/barcode.ashx?data=http://menu-service.me/${companyData.link}&code=MobileQRCode&translate-esc=on&imagetype=Svg&eclevel=L`}/>
-                    </div>
-                </section>
-            </div>
+            {/*    <section className={css.formColumn}>*/}
+            {/*        <h3>QR-code information</h3>*/}
+            {/*        <h4>Your restaurant link:<br/>{`http://menu-service.me/${formData.link}`}</h4>*/}
+            {/*        <p>You can print this QR-code and use it in your restaurant to access the menu</p>*/}
+            {/*    </section>*/}
+            {/*    <section className={css.formColumn}>*/}
+            {/*       <div>*/}
+            {/*           <div className={css.formItemWrap}>*/}
+            {/*               <img className={css.qrImg} src={`https://barcode.tec-it.com/barcode.ashx?data=http://menu-service.me/${formData.link}&code=MobileQRCode&translate-esc=on&imagetype=Svg&eclevel=L`}/>*/}
+            {/*           </div>*/}
+            {/*       </div>*/}
+            {/*    </section>*/}
+            {/*</div>*/}
         </div>
     );
 };

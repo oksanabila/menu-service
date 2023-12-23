@@ -12,6 +12,7 @@ import {Button, Container, ThemeProvider} from "@mui/material";
 import * as PropTypes from "prop-types";
 import {useCookies} from "react-cookie";
 import {Header} from "../../Header/Header";
+import {ConfirmationDialog} from "../../Dialog/ConfirmationDialog/ConfirmationDialog";
 
 const tabs = [
     { label: 'Company Data', path: 'company-data-tab' },
@@ -85,7 +86,11 @@ function AdminTabs() {
                     </div>
                 </section>
             </Container>
-
+            {/*<ConfirmationDialog*/}
+            {/*    open={confirmDialogOpen}*/}
+            {/*    onClose={() => setConfirmDialogOpen(false)}*/}
+            {/*    onConfirm={handleConfirmationSubmit}*/}
+            {/*/>*/}
         </>
     );
 }

@@ -75,7 +75,9 @@ button.actionButton {
 button.create {
   color: #F6F4F4;
   background-color: #215b24;
-
+  &:hover {
+    color: #215b24;
+  }
 }
 button.edit {
   color: #215b24;
@@ -119,5 +121,12 @@ button.edit {
 
 .capitalize {
   text-transform: capitalize;
+}
+
+@media (max-width: 900px) {
+  .section {
+    background-color: blueviolet;
+  }
+
 }
 

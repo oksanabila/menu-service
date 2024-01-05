@@ -109,6 +109,22 @@ const SetupApiWithToken = () => {
 
         getDishById: (dishId) => apiAdminService.get(urls.admin.getDishById(dishId)),
 
+        setSectionActivity: (id, active) => {
+            const jsonData = JSON.stringify(id, active);
+            return apiAdminService.post(urls.admin.setSectionActivity(id, active), jsonData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        },
+        setDishActivity: (id, active) => {
+            const jsonData = JSON.stringify(id, active);
+            return apiAdminService.post(urls.admin.setDishActivity(id, active), jsonData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        },
         // updateToken: (data) => {
         //     apiAdminService.get(urls.admin.updateToken(data), )
         // }

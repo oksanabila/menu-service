@@ -11,7 +11,7 @@ const MainLayout = () => {
         <>
             <Header className={cssHeader.headerOpacity}/>
             <CompanyTitleInfo/>
-            <Footer/>
+            {/*<Footer/>*/}
         </>
     );
 };

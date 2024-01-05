@@ -18,4 +18,15 @@ button.tab {
   padding-left: 0;
 }
 
+@media (max-width: 992px) {
+  .tabsPageContainer {
+    grid-template-columns: 1fr;
+    margin: 0;
+    grid-column-gap: 10px;
+  }
+  div.MuiTabs-flexContainer {
+    flex-direction: row;
+  }
+}
+
 /*# sourceMappingURL=AdminTabs.module.css.map */

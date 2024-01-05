@@ -15,7 +15,9 @@ const MenuTabs = () => {
         companyService.getAll()
         companyService.getAll(`${baseURL}/${companyLink}`)
             .then(response => {
-                setMenuData(response.data.data.company_data.menu);
+                console.log(response.data.menu);
+
+                setMenuData(response.data.menu);
             })
             .catch(error => console.error('Error fetching company data:', error));
     }, [companyLink]);
@@ -24,13 +26,13 @@ const MenuTabs = () => {
         <div className={`${css.tabsWrap} container`}>
             <Tabs defaultValue={`menu`}>
                 <TabsList className={css.tabsList}>
-                    {menuData && menuData.map(category => (
+                    {menuData && menuData.filter(category => category.active).map(category => (
                         <Tab key={category.id} value={category.name} className={css.menuTab}>
                             {category.name}
                         </Tab>
                     ))}
                 </TabsList>
-                {menuData && menuData.map(category => (
+                {menuData && menuData.filter(category => category.active).map(category => (
                     <TabPanel key={category.id} value={category.name}>
 
                         <SubMenuTabs subsections={category.subsections} menuData={menuData} />

@@ -1,132 +1,208 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
-body {
-  margin: 0;
-  font-family: 'Jost', sans-serif;
-  //font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  --active-color: #63B561;
-  --gray: #dddddd;
-  --gray-md: #CCCCCC;
-}
-
-button {
-  font-family: 'Jost', sans-serif;
-  text-align: center;
-}
-input.MuiInputBase-input {
-  font-family: 'Jost', sans-serif;
-}
-input#outlined-basic::placeholder {
-  font-family: 'Jost', sans-serif;
-}
-.MuiPaper-root, .MuiPaper-root .MuiTypography-root {
-  font-family: 'Jost', sans-serif;
-  text-align: center;
-}
-//button.tab {
+//@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+//body {
+//  margin: 0;
+//  font-family: 'Jost', sans-serif;
+//  //font-family: 'Montserrat', sans-serif;
+//  font-size: 16px;
+//  --active-color: #63B561;
+//  --gray: #dddddd;
+//  --gray-md: #CCCCCC;
+//  --xs: 540px;
+//  --sm: 720px;
+//  --md: 960px;
+//  --lg: 1140px;
+//  --xl: 1320px;
+//
+//  //xs	<576px
+//  //sm	≥576px
+//  //md	≥768px
+//  //lg	≥992px
+//  //xl	≥1200px
+//  //xxl	≥1400px
+//}
+//
+//button {
+//  font-family: 'Jost', sans-serif;
+//  text-align: center;
+//}
+//input.MuiInputBase-input {
 //  font-family: 'Jost', sans-serif;
 //}
-button.MuiButton-outlined,
-button.MuiButton-contained {
-  font-family: 'Jost', sans-serif;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  position: relative;
-  //max-width: 720px;
-  //margin: 0 auto;
-}
-.container {
-  width: 100%;
-  padding-left: 16px;
-  padding-right: 16px;
-  box-sizing: border-box;
-  &_margin {
-    margin-top: 30px;
-  }
-}
-
-.flexWrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.form-item {
-  &__field {}
-  &__select {
-    max-width: 70px;
-    .react-select {
-
-      &__indicator {
-        padding: 5px;
-      }
-      &__indicator-separator {
-        display: none;
-      }
-      &__control {
-        border: none;
-        box-shadow: none;
-        min-height: 40px;
-
-        &--menu-is-open {
-          border: none;
-          box-shadow: none;
-        }
-      }
-      &__menu {
-        overflow: hidden;
-        margin-top: 5px;
-        margin-bottom: 5px;
-      }
-      &__menu-list {
-        padding: 0;
-      }
-      &__option {
-        &:active {
-          //background-color: hotpink;
-        }
-      }
-    }
-  }
-}
-
-.btn {
-  //background-color: green;
-  width: 100%;
-  &.MuiButton-root {
-    font-family: 'Jost', sans-serif;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 1;
-    text-transform: unset;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    background-color: var(--active-color);
-    border-radius: 10px;
-  }
-}
-
-.btn-wrap {
-  width: 100%;
-  display: inline-block;
-  margin-top: 24px;
-}
-
-section {
-  margin-bottom: 32px;
-}
-
-h3 {
-  margin-top: 0;
-}
-
-
-img {
-  max-width: 100%;
-}
-
-
+//input#outlined-basic::placeholder {
+//  font-family: 'Jost', sans-serif;
+//}
+//.MuiPaper-root, .MuiPaper-root .MuiTypography-root {
+//  font-family: 'Jost', sans-serif;
+//  text-align: center;
+//}
+////button.tab {
+////  font-family: 'Jost', sans-serif;
+////}
+//button.MuiButton-outlined,
+//button.MuiButton-contained {
+//  font-family: 'Jost', sans-serif;
+//}
+//
+//.wrapper {
+//  display: flex;
+//  flex-direction: column;
+//  min-height: 100vh;
+//  position: relative;
+//  //max-width: 720px;
+//  //margin: 0 auto;
+//}
+//
+//.container {
+//  max-width: (--xl);
+//  padding-right: 16px;
+//  width: 100%;
+//  padding-left: 16px;
+//  box-sizing: border-box;
+//  &_margin {
+//    margin-top: 30px;
+//  }
+//}
+//
+//.flexWrap {
+//  display: flex;
+//  align-items: center;
+//  justify-content: space-between;
+//}
+//
+//.form-item {
+//  &__field {}
+//  &__select {
+//    max-width: 70px;
+//    .react-select {
+//
+//      &__indicator {
+//        padding: 5px;
+//      }
+//      &__indicator-separator {
+//        display: none;
+//      }
+//      &__control {
+//        border: none;
+//        box-shadow: none;
+//        min-height: 40px;
+//
+//        &--menu-is-open {
+//          border: none;
+//          box-shadow: none;
+//        }
+//      }
+//      &__menu {
+//        overflow: hidden;
+//        margin-top: 5px;
+//        margin-bottom: 5px;
+//      }
+//      &__menu-list {
+//        padding: 0;
+//      }
+//      &__option {
+//        &:active {
+//          //background-color: hotpink;
+//        }
+//      }
+//    }
+//  }
+//}
+//
+//.btn {
+//  //background-color: green;
+//  width: 100%;
+//  &.MuiButton-root {
+//    font-family: 'Jost', sans-serif;
+//    font-weight: 500;
+//    font-size: 24px;
+//    line-height: 1;
+//    text-transform: unset;
+//    padding-top: 16px;
+//    padding-bottom: 16px;
+//    background-color: var(--active-color);
+//    border-radius: 10px;
+//  }
+//}
+//
+//.btn-wrap {
+//  width: 100%;
+//  display: inline-block;
+//  margin-top: 24px;
+//  border-bottom: none;
+//}
+//
+//section {
+//  margin-bottom: 32px;
+//}
+//
+//h3 {
+//  margin-top: 0;
+//}
+//
+//
+//img {
+//  max-width: 100%;
+//}
+//
+//
+//a {
+//  display: inline-block;
+//  color: inherit;
+//  text-decoration: unset;
+//  border-bottom: 2px solid var(--active-color);
+//  &:hover {
+//    color: var(--active-color);
+//  }
+//}
+//
+//
+//
+//
+//
+////Breakpoint
+////xs	<576px
+////sm	≥576px
+////md	≥768px
+////lg	≥992px
+////xl	≥1200px
+////xxl	≥1400px
+//// --xs: 576px;
+////  --sm: 768px;
+////  --md: 992px;
+////  --lg: 1200px;
+//
+//// Small devices (landscape phones, 576px and up)
+////@media (min-width: var(--xs)) {
+////  body {
+////    background-color: #63B561;
+////  }
+////}
+////
+////// Medium devices (tablets, 768px and up)
+////@media (min-width: 768px) { ... }
+////
+////// Large devices (desktops, 992px and up)
+////@media (min-width: 992px) { ... }
+////
+////// X-Large devices (large desktops, 1200px and up)
+////@media (min-width: 1200px) { ... }
+////
+////// XX-Large devices (larger desktops, 1400px and up)
+////@media (min-width: 1400px) { ... }
+//
+//
+//@media (max-width: 1200px) {
+//
+//}
+//
+//@media (max-width: 992px) {
+//
+//}
+//
+//@media (max-width: 768px) {
+//
+//}
+//
+//@media (max-width: 576px) {
+//
+//}

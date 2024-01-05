@@ -19,4 +19,21 @@
 
 .qrImg {
   width: 100px;
+  margin-bottom: 5px;
+  //margin: 0 auto 5px auto;
+}
+
+.imgCapture {
+   //margin: 0 auto;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    grid-template-columns: 1fr;
+  }
+  .qrWrap {
+    justify-content: center;
+    align-items: center;
+  }
 }

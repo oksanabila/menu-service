@@ -9,13 +9,11 @@ import {Container} from "@mui/material";
 const Header = ({children}) => {
     return (
         <header className={`${css.header}`}>
-            <Container maxWidth="xl">
-             <div className={'flexWrap'}>
-                 <SelectInput/>
-                 <img src={logoImg} alt={'companyLogo'} className={css.headerLogo}/>
-                 {children}
-             </div>
-            </Container>
+            <div className={'flexWrap container'}>
+                <SelectInput/>
+                <img src={logoImg} alt={'companyLogo'} className={css.headerLogo}/>
+                {children}
+            </div>
         </header>
     );
 };

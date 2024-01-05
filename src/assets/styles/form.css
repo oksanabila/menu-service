@@ -1,0 +1,53 @@
+.form-item__select {
+  max-width: 70px;
+}
+.form-item__select .react-select__indicator {
+  padding: 5px;
+}
+.form-item__select .react-select__indicator-separator {
+  display: none;
+}
+.form-item__select .react-select__control {
+  border: none;
+  box-shadow: none;
+  min-height: 40px;
+}
+.form-item__select .react-select__control--menu-is-open {
+  border: none;
+  box-shadow: none;
+}
+.form-item__select .react-select__menu {
+  overflow: hidden;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.form-item__select .react-select__menu-list {
+  padding: 0;
+}
+button.MuiButton-root {
+  min-width: 100px;
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1;
+  text-transform: unset;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 10px;
+}
+button.MuiButton-containedSuccess {
+  background-color: #63B561;
+}
+button.MuiButton-outlinedSuccess {
+  border-color: #63B561;
+}
+
+.btnWrap {
+  width: 100%;
+  display: inline-block;
+  margin-top: 24px;
+  border-bottom: none;
+  padding: 10px;
+}
+
+/*# sourceMappingURL=form.css.map */

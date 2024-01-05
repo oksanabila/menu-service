@@ -93,21 +93,16 @@ const CompanyData = (effect, deps) => {
     };
     return (
         <div className={'container container_margin'}>
-            <div className={'flexWrap'}>
-                {/*<div className={css.formItemWrap}>*/}
-                    <img className={css.qrImg} src={`https://barcode.tec-it.com/barcode.ashx?data=http://menu-service.me/${formData.link}&code=MobileQRCode&translate-esc=on&imagetype=Svg&eclevel=L`}/>
-                {/*</div>*/}
-                <h2>{formData.name}</h2>
-
-            </div>
-            {/*<h3>edit data</h3>*/}
             <Box
                 component="form"
                 noValidate
                 autoComplete="off"
                 className={css.formContainer}
             >
+
+
                 <section className={css.formColumn}>
+                    <h2>{formData.name}</h2>
                     <TextField
                         id="outlined-basic"
                         label="Company name"
@@ -118,6 +113,20 @@ const CompanyData = (effect, deps) => {
                         required
                         onChange={handleChange}
                     />
+                    {/*<h4>{`http://menu-service.me/${formData.link}`}</h4>*/}
+                </section>
+                <section className={`${css.formColumn} ${css.qrWrap}`}>
+                    {/*<div>*/}
+                        <img className={css.qrImg} src={`https://barcode.tec-it.com/barcode.ashx?data=http://menu-service.me/${formData.link}&code=MobileQRCode&translate-esc=on&imagetype=Svg&eclevel=L`}/>
+                    
+                    {/*TODO change to https after release*/}
+                    <div><a href={`http://menu-service.me/${formData.link}`} className={css.imgCapture}>{`menu-service.me/${formData.link}`}</a></div>
+                        {/*<p>You can print this QR-code and use it in your restaurant to access the menu</p>*/}
+
+                    {/*</div>*/}
+                </section>
+                <section className={css.formColumn}>
+
                     <TextField
                         id="outlined-multiline-static"
                         label="Short description"

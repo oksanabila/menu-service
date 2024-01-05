@@ -1,0 +1,71 @@
+@use 'variables';
+
+.form-item {
+  &__field {}
+  &__select {
+    max-width: 70px;
+    .react-select {
+
+      &__indicator {
+        padding: 5px;
+      }
+      &__indicator-separator {
+        display: none;
+      }
+      &__control {
+        border: none;
+        box-shadow: none;
+        min-height: 40px;
+
+        &--menu-is-open {
+          border: none;
+          box-shadow: none;
+        }
+      }
+      &__menu {
+        overflow: hidden;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      &__menu-list {
+        padding: 0;
+      }
+      &__option {
+        &:active {
+          //background-color: hotpink;
+        }
+      }
+    }
+  }
+}
+button {
+  //background-color: green;
+  //width: 100%;
+  &.MuiButton-root {
+    min-width: 100px;
+
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: variables.$font-lg;
+    line-height: 1;
+    text-transform: unset;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 10px;
+  }
+  &.MuiButton-containedSuccess {
+    background-color: variables.$active-color;
+  }
+  &.MuiButton-outlinedSuccess {
+    border-color: variables.$active-color;
+  }
+}
+
+.btnWrap {
+  width: 100%;
+  display: inline-block;
+  margin-top: 24px;
+  border-bottom: none;
+  padding: 10px;
+}
+

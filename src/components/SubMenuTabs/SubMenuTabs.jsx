@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import css from './SubMenuTabs.module.css';
+import dish from '../DishCard/DishCard.module.css';
 import { DishCard } from "../DishCard/DishCard";
 
 const SubMenuTabs = ({ subsections, menuData }) => {
@@ -91,10 +92,12 @@ const SubMenuTabs = ({ subsections, menuData }) => {
             {subsections.map((subsection) => (
                 <section key={subsection.id} id={subsection.name} className={`${css.category} ${activeCategory === subsection.name ? css.active : ''}`}>
                     <h3 className={css.categoryTitle}>{subsection.name}</h3>
+                    <div className={dish.dishes}>
+                        {subsection.dishes.map((dish, key) => (
+                            <DishCard key={`${subsection.id}${dish.id}${key}`} id={`${subsection.id}${dish.id}${key}`} dish={dish} />
+                        ))}
+                    </div>
 
-                    {subsection.dishes.map((dish, key) => (
-                        <DishCard key={`${subsection.id}${dish.id}${key}`} dish={dish} />
-                    ))}
                 </section>
             ))}
         </div>

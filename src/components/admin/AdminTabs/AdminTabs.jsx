@@ -9,6 +9,8 @@ import {CompanyData} from '../CompanyData/CompanyData';
 import SectionsStructure from '../SectionsStructure/SectionsStructure';
 import { createTheme } from '@mui/material/styles';
 import {Button, Container, ThemeProvider} from "@mui/material";
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 import * as PropTypes from "prop-types";
 import {useCookies} from "react-cookie";
 import {Header} from "../../Header/Header";
@@ -19,7 +21,6 @@ const tabs = [
     { label: 'Menu', path: 'menu-tab' },
     // { label: 'Dish', path: 'dish-tab' },
 ];
-
 const theme = createTheme({
     palette: {
         secondary: {
@@ -38,6 +39,7 @@ function AdminTabs() {
     const location = useLocation();
     const navigate = useNavigate();
     const [value, setValue] = useState(0);
+    const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
 
 
     useEffect(() => {
@@ -71,7 +73,7 @@ function AdminTabs() {
                 <section className={css.tabsPageContainer}>
                     <ThemeProvider theme={theme}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }} className={css.tabsWrap}>
-                            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" orientation="vertical" textColor="secondary"
+                            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"  orientation={isMdUp ? "vertical" : "horizontal"} textColor="secondary"
                                   indicatorColor="secondary">
                                 {tabs.map((tab, index) => (
                                     <Tab key={index} label={tab.label} id={`tab-${index}`} aria-labelledby={`tab-${index}`}  className={css.tab}/>

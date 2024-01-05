@@ -1,0 +1,32 @@
+@use 'variables';
+
+@mixin pseudo($display: block, $pos: absolute, $content: ''){
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+@mixin border-radius($radius: 10px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+
+@mixin flex-center-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin container($padding: 16px, $max-width: variables.$xl ) {
+  max-width: $max-width;
+  width: 100%;
+  padding-right: $padding;
+  padding-left: $padding;
+  margin: 0 auto;
+  box-sizing: border-box;
+}

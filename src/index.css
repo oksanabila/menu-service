@@ -6,6 +6,11 @@ body {
   --active-color: #63B561;
   --gray: #dddddd;
   --gray-md: #CCCCCC;
+  --xs: 540px;
+  --sm: 720px;
+  --md: 960px;
+  --lg: 1140px;
+  --xl: 1320px;
 }
 
 button {
@@ -39,9 +44,10 @@ button.MuiButton-contained {
 }
 
 .container {
+  max-width: --xl;
+  padding-right: 16px;
   width: 100%;
   padding-left: 16px;
-  padding-right: 16px;
   box-sizing: border-box;
 }
 .container_margin {
@@ -99,6 +105,7 @@ button.MuiButton-contained {
   width: 100%;
   display: inline-block;
   margin-top: 24px;
+  border-bottom: none;
 }
 
 section {
@@ -111,6 +118,16 @@ h3 {
 
 img {
   max-width: 100%;
+}
+
+a {
+  display: inline-block;
+  color: inherit;
+  text-decoration: unset;
+  border-bottom: 2px solid var(--active-color);
+}
+a:hover {
+  color: var(--active-color);
 }
 
 /*# sourceMappingURL=index.css.map */

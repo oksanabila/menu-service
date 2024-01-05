@@ -9,7 +9,7 @@ const MenuLayout = () => {
         <>
             <Header/>
             <MenuPage/>
-            <Footer/>
+            {/*<Footer/>*/}
         </>
     );
 };

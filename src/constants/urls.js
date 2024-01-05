@@ -24,6 +24,8 @@ const token = '/admin/token/'
 const updateToken = '/admin/update_token'
 const getDishes = '/admin/get_dishes'
 const getDish = '/admin/get_dish'
+const setSectionActivity = '/admin/set_section_activity'
+const setDishActivity = '/admin/set_dish_activity'
 
 const urls = {
     company: {
@@ -40,6 +42,9 @@ const urls = {
         token: () => `${token}`,
         updateToken: () => `${updateToken}`,
         getDishById: (dishId) => `${getDish}?id=${dishId}`,
+        setSectionActivity: (id, active) => `${setSectionActivity}?id=${id}&active=${active}`,
+        setDishActivity: (id, active) => `${setDishActivity}?id=${id}&active=${active}`,
+
         // boundary: () => `${boundary}`
     }
 }

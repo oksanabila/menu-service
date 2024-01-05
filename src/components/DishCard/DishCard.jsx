@@ -4,6 +4,7 @@ import {companyService} from "../../services";
 import {imgLink} from '../../constants/index'
 import css from './DishCard.module.css';
 import { Dialog, IconButton, Slide, Typography } from "@mui/material";
+import {CustomDialog} from "../Dialog/CustomDialog/CustomDialog";
 
 
 const DishCard = ({dish}) => {
@@ -14,25 +15,30 @@ const DishCard = ({dish}) => {
             .then(response => setMenuData(response.data.menu))
             .catch(error => console.error("Error fetching menu data:", error));
     }, []);
-
+    useEffect(() => {
+        console.log('Current state of open:', open);
+    }, [open]);
     if (!dish) {
         return <div>Loading...</div>;
     }
 
     const handleClickOpen = () => {
+        console.log("Opening dialog");
         setOpen(true);
+
     };
 
     const handleClose = () => {
+        console.log("Closing dialog");
         setOpen(false);
+
     };
 
     const Transition = React.forwardRef(function Transition(props, ref) {
         return <Slide direction="up" ref={ref} {...props} />;
     });
-
-    return (
-        <>
+    return dish.active ? (
+        <div className={css.dish}>
             <div className={css.dishGrid} onClick={handleClickOpen}>
                 <div className={css.imgWrap}>
                     <div className={css.imgContent}>
@@ -40,22 +46,26 @@ const DishCard = ({dish}) => {
                     </div>
                 </div>
                 <div>
-                    <div className={css.dishTitle}>{dish.name}</div>
+                    <h3 className={css.dishTitle}>{dish.name}</h3>
+                    <div className={css.dishWeight}>{dish.weight}gr</div>
+                    <div className={css.dishDescr}>{dish.description}</div>
+                </div>
+                <div></div>
+                <div>
+                    <div className={css.dishPrice}>{dish.price} €</div>
 
                 </div>
             </div>
-
-            <Dialog
+            <CustomDialog
                 open={open}
                 onClose={handleClose}
-                TransitionComponent={Transition}
-                PaperProps={{
+                paperProps={{
                     style: {
                         height: '75vh',
                         overflowY: 'auto'
                     }
                 }}
-                sx={{
+                sxProps={{
                     '& .MuiBackdrop-root': {
                         backgroundColor: 'rgba(0, 0, 0, 0.5)',
                     },
@@ -65,49 +75,42 @@ const DishCard = ({dish}) => {
                         margin: '0',
                         width: '100%',
                         borderRadius: 0
+                    },
+                    '& .MuiDialogContent-root': {
+                        padding: 0,
                     }
-                }}
-            >
-                <IconButton
-                    edge="start"
-                    color="inherit"
-                    onClick={handleClose}
-                    aria-label="close"
-                    sx={{
-                        position: 'absolute',
-                        right: 8,
-                        top: 8,
-                        color: (theme) => theme.palette.grey[500],
-                    }}
-                >
-                </IconButton>
-
-                <div className={css.dialogContent}>
-                    <div className={css.dishImageContainer}>
-                        <img src={`${imgLink}/${dish.mainImg}`} alt={dish.name} className={css.dishImage} />
+                }}>
+                <div className={css.dialog}>
+                    <div className={css.dialogImgWrap}>
+                        <div className={css.dialogImgInner}>
+                            <div className={css.dialogImg} style={{backgroundImage: `url(${imgLink}/${dish.mainImg})`}}></div>
+                        </div>
+                        {/*<img src={`${imgLink}/${dish.mainImg}`} alt={dish.name} className={css.dialogImg} />*/}
                     </div>
 
-                    <div className={css.dishDetails}>
-                        <Typography variant="h5" component="h2" className={css.dishTitle}>
+                    <div className={css.dialogDetails}>
+                        <h3 className={css.dialogTitle}>
                             {dish.name}
-                        </Typography>
-                        <Typography variant="body1" className={css.dishDescription}>
-                            {dish.description}
-                        </Typography>
-
-                        <div className={css.dishPriceWeight}>
-                            <Typography variant="h6" className={css.dishPrice}>
-                                {dish.price} €
-                            </Typography>
-                            <Typography variant="subtitle1" className={css.dishWeight}>
+                        </h3>
+                        <div className={css.dialogPriceWeight}>
+                            <div className={css.dialogWeight}>
                                 {dish.weight}gr
-                            </Typography>
+                            </div>
+                            <h6 className={css.dialogPrice}>
+                                {dish.price} €
+                            </h6>
                         </div>
+                        <p className={css.dialogDescription}>
+                            {dish.description}
+                        </p>
+
+
                     </div>
                 </div>
-            </Dialog>
-        </>
-    );
+            </CustomDialog>
+        </div>
+    ) : null;
+
 };
 
 export { DishCard };

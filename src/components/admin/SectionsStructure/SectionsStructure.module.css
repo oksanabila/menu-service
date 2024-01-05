@@ -2,8 +2,6 @@
   padding-top: 17px;
 }
 
-
-
 .sectionTitle {
   display: flex;
   align-items: center;
@@ -15,6 +13,7 @@
 .sectionTitle .actionButtons {
   padding-right: 30px;
 }
+
 .section {
   /*margin-left: 10px;*/
   background-color: rgba(136, 185, 90, 0.6);
@@ -37,19 +36,17 @@
   padding-right: 10px;
 }
 
-
 .subsection .actionButtons {
   padding-right: 10px;
   padding-bottom: 10px;
 }
 
-
 .dish {
   margin-left: 10px;
   background-color: rgb(243, 255, 236);
-  & .between {
-    border-bottom: 2px solid rgb(206, 227, 177);
-  }
+}
+.dish .between {
+  border-bottom: 2px solid rgb(206, 227, 177);
 }
 
 button.btnEditDish {
@@ -62,7 +59,6 @@ button.btnEditDish {
   min-width: 75px;
 }
 
-
 button.actionButton {
   min-width: 150px;
   font-size: 12px;
@@ -71,19 +67,19 @@ button.actionButton {
   border-color: #215b24;
   border-radius: 17px;
 }
+
 button.create {
   color: #F6F4F4;
   background-color: #215b24;
-  &:hover {
-    color: #215b24;
-  }
 }
+button.create:hover {
+  color: #215b24;
+}
+
 button.edit {
   color: #215b24;
   margin-left: 10px;
 }
-
-
 
 .dishTitle {
   font-size: 14px;
@@ -97,6 +93,7 @@ button.edit {
   text-transform: uppercase;
   margin-right: 15px;
 }
+
 .subsectionName {
   font-size: 18px;
   font-weight: 500;
@@ -127,33 +124,19 @@ button.edit {
   align-items: center;
   box-sizing: border-box;
   justify-content: space-between;
-  //&.between {
-  //  width: 100%;
-  //  justify-content: space-between;
-  //  padding-top: 7px;
-  //  padding-bottom: 7px;
-  //  /*padding: 7px 19px 7px 0;*/
-  //  /*border-bottom: 1px solid;*/
-  //}
 }
 
-
 .menuItemWrap {
-  //display: grid;
-  //grid-template-columns: 1fr 1fr;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
 }
+
 .leftCol {
   display: flex;
   align-items: center;
   box-sizing: border-box;
 }
-
-
-
 
 @media (max-width: 768px) {
   .menuItemWrap {
@@ -161,11 +144,6 @@ button.edit {
   }
   .flexWrap {
     justify-content: space-between;
-    //flex-direction: column;
-    //
-    //&.between {
-    //  align-items: center;
-    //}
     padding-right: 10px;
   }
   .actionButtons {
@@ -181,7 +159,6 @@ button.edit {
     margin-top: 5px;
   }
 }
-
 @media (max-width: 576px) {
   .sectionName {
     font-size: 15px;
@@ -193,3 +170,5 @@ button.edit {
     flex-direction: column;
   }
 }
+
+/*# sourceMappingURL=SectionsStructure.module.css.map */

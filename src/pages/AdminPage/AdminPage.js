@@ -17,7 +17,7 @@ const AdminPage = () => {
             <Route path="/*" element={isToken ? (<AdminTabs />):(<AuthForm />)}>
                 <Route path="company-data-tab" element={<CompanyData />} />
                 <Route path="menu-tab" element={<SectionsStructure />} />
-                <Route path="menu-tab/dish/" element={<DishForm />} />
+                <Route path="menu-tab/dish/new?parentId=:parentId" element={<DishForm />} />
                 <Route path="menu-tab/dish/:dishId" element={<DishForm/>} />
             </Route>
         </Routes>
@@ -25,3 +25,20 @@ const AdminPage = () => {
 };
 
 export {AdminPage};
+
+
+
+{/*<Route*/}
+{/*    path="menu-tab/dish/"*/}
+{/*    element={<DishForm key="new" />}*/}
+{/*/>*/}
+{/*<Route*/}
+{/*    path="menu-tab/dish/:dishId"*/}
+{/*    element={<DishForm key={undefined} />}*/}
+{/*/>*/}
+
+
+{/*<Route*/}
+{/*    path="menu-tab/dish/*"*/}
+{/*    element={<DishForm />}*/}
+{/*/>*/}

@@ -40,6 +40,7 @@ function AdminTabs() {
     const navigate = useNavigate();
     const [value, setValue] = useState(0);
     const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
+    const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
 
 
     useEffect(() => {
@@ -55,10 +56,14 @@ function AdminTabs() {
     };
     const [cookies, setCookie, removeCookie] = useCookies(['authToken']);
     const handleClickAuth = () => {
-        removeCookie('authToken', { path: '/admin', expires: new Date(0) });
-        console.log('click');
+        setConfirmDialogOpen(true);
     };
-
+    const handleConfirmationSubmit = (confirm) => {
+        if (confirm) {
+            removeCookie('authToken', { path: '/admin', expires: new Date(0) });
+        }
+        setConfirmDialogOpen(false);
+    };
     return (
         <>
             <Header>
@@ -88,11 +93,13 @@ function AdminTabs() {
                     </div>
                 </section>
             </Container>
-            {/*<ConfirmationDialog*/}
-            {/*    open={confirmDialogOpen}*/}
-            {/*    onClose={() => setConfirmDialogOpen(false)}*/}
-            {/*    onConfirm={handleConfirmationSubmit}*/}
-            {/*/>*/}
+            <ConfirmationDialog
+                open={confirmDialogOpen}
+                onClose={() => setConfirmDialogOpen(false)}
+                onConfirm={handleConfirmationSubmit}
+                text="Are you sure you want to exit?"
+                title="Exit"
+            />
         </>
     );
 }

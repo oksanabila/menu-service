@@ -1,3 +1,6 @@
+@use '../../../assets/styles/variables';
+@use '../../../assets/styles/mixins';
+
 .wrap {
   padding-top: 17px;
 }
@@ -5,10 +8,8 @@
 
 
 .sectionTitle {
-  display: flex;
-  align-items: center;
+  @include mixins.flex-center-between;
   box-sizing: border-box;
-  justify-content: space-between;
   margin: 35px 0 20px 0;
 }
 
@@ -53,33 +54,34 @@
 }
 
 button.btnEditDish {
-  border-width: 1px;
+  font-size: variables.$font-xs;
   font-weight: 600;
-  color: #215b24;
-  border-color: #215b24;
-  border-radius: 17px;
   text-transform: lowercase;
   min-width: 75px;
+  color: variables.$green-dark;
+  border-width: 1px;
+  border-color: variables.$green-dark;
+  border-radius: 17px;
 }
 
 
 button.actionButton {
   min-width: 150px;
-  font-size: 12px;
+  font-size: variables.$font-xs;
   border-width: 2px;
   font-weight: 600;
-  border-color: #215b24;
+  border-color: variables.$green-dark;
   border-radius: 17px;
 }
 button.create {
   color: #F6F4F4;
-  background-color: #215b24;
+  background-color: variables.$green-dark;
   &:hover {
     color: #215b24;
   }
 }
 button.edit {
-  color: #215b24;
+  color: variables.$green-dark;
   margin-left: 10px;
 }
 
@@ -123,29 +125,15 @@ button.edit {
 }
 
 .flexWrap {
-  display: flex;
-  align-items: center;
+  @include mixins.flex-center-between;
   box-sizing: border-box;
-  justify-content: space-between;
-  //&.between {
-  //  width: 100%;
-  //  justify-content: space-between;
-  //  padding-top: 7px;
-  //  padding-bottom: 7px;
-  //  /*padding: 7px 19px 7px 0;*/
-  //  /*border-bottom: 1px solid;*/
-  //}
+  margin-bottom: 3px;
 }
-
 
 .menuItemWrap {
-  //display: grid;
-  //grid-template-columns: 1fr 1fr;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
+  @include mixins.flex-center-between;
 }
+
 .leftCol {
   display: flex;
   align-items: center;

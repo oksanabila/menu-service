@@ -2,7 +2,7 @@
   border: 1px solid #c4c4c4;
   border-radius: 4px;
   padding: 15px;
-  margin: 22px 0 8px 0;
+  margin: 16px 0;
 }
 .imgWrap span {
   color: gray;
@@ -15,8 +15,8 @@
   display: grid;
 }
 
-.btnMargin {
-  margin: 16px 0 8px 0;
+label.btnMargin {
+  margin: 16px 0;
 }
 
 /*# sourceMappingURL=LoadPhotoInput.module.css.map */

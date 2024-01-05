@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 
 import {Box, Button, InputLabel, TextField} from "@mui/material";
 import css from "../CompanyData/CompanyData.module.css";
@@ -137,7 +137,7 @@ const DishForm = () => {
         setDishData(initialDishData);
     };
 
-    const handleEGoBack = () => {
+    const handleGoBack = () => {
         navigate(`/admin/menu-tab`);
     };
 
@@ -168,7 +168,7 @@ const DishForm = () => {
               <Button
                   variant="outlined"
                   color="error"
-                  onClick={() => handleEGoBack()}
+                  onClick={() => handleGoBack()}
               >Go back</Button>
           </div>
             <Box
@@ -269,6 +269,3 @@ const DishForm = () => {
 };
 
 export {DishForm};
-
-
-

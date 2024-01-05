@@ -47,6 +47,27 @@ a:hover {
   color: var(--active-color);
 }
 
+div.MuiPaper-root {
+  font-family: "Jost", sans-serif;
+  min-width: 300px;
+}
+div.MuiPaper-root p {
+  font-family: "Jost", sans-serif;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+div.MuiFormControl-root label {
+  font-family: "Jost", sans-serif;
+}
+div.MuiFormControl-root .MuiInputBase-root {
+  margin-bottom: 10px;
+}
+
+.text-bold {
+  font-weight: 600;
+}
+
 @media (max-width: 1320px) {
   .container {
     max-width: 1320px;

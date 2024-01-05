@@ -50,6 +50,31 @@ a {
   }
 }
 
+
+div.MuiPaper-root {
+  font-family: 'Jost', sans-serif;
+  min-width: 300px;
+  p {
+    font-family: 'Jost', sans-serif;
+    font-size: variables.$font-md;
+    margin-bottom: 16px;
+  }
+}
+
+div.MuiFormControl-root {
+  label {
+    font-family: 'Jost', sans-serif;
+  }
+  .MuiInputBase-root {
+    margin-bottom: 10px;
+  }
+}
+
+
+.text-bold {
+  font-weight: 600;
+}
+
 @media (max-width: variables.$xl) {
   .container {
     max-width: variables.$xl;

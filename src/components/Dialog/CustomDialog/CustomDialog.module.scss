@@ -1,8 +1,12 @@
+@use '../../../assets/styles/variables';
+
+
 .toolbar {
   justify-content: space-between;
   align-items: center;
 }
 
 .toolbarTitle {
-  font-size: 24px;
+  font-size: variables.$font-lg;
+  font-weight: 600;
 }

@@ -172,7 +172,7 @@
     text-transform: unset;
     padding-top: 16px;
     padding-bottom: 16px;
-    background-color: var(--active-color);
+    background-color: variables.$active-color;
     border-radius: 10px;
   }
 }

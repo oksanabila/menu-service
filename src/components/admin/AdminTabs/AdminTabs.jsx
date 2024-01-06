@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 
+import {Button, Container, ThemeProvider} from "@mui/material";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import css from './AdminTabs.module.css';
-import {CompanyData} from '../CompanyData/CompanyData';
-import SectionsStructure from '../SectionsStructure/SectionsStructure';
 import { createTheme } from '@mui/material/styles';
-import {Button, Container, ThemeProvider} from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
-
-import * as PropTypes from "prop-types";
 import {useCookies} from "react-cookie";
 import {Header} from "../../Header/Header";
 import {ConfirmationDialog} from "../../Dialog/ConfirmationDialog/ConfirmationDialog";
+import {CompanyData} from '../CompanyData/CompanyData';
+import {SectionsStructure} from "../SectionsStructure/SectionsStructure";
+import css from './AdminTabs.module.css';
+import * as PropTypes from "prop-types";
+
 
 const tabs = [
     { label: 'Company Data', path: 'company-data-tab' },
     { label: 'Menu', path: 'menu-tab' },
-    // { label: 'Dish', path: 'dish-tab' },
 ];
 const theme = createTheme({
     palette: {
@@ -49,8 +48,6 @@ function AdminTabs() {
     }, [location.pathname]);
 
     const handleChange = (_, newValue) => {
-        // const newPath = tabs[newValue].path;
-        // navigate(`../${newPath}`);
         navigate(`/admin/${tabs[newValue].path}`);
 
     };
@@ -89,7 +86,6 @@ function AdminTabs() {
                     <div className={css.tabsPanelWrap}>
                         {value === 0 && <CompanyData />}
                         {value === 1 && <SectionsStructure />}
-                        {/*{value === 2 && <DishForm />}*/}
                     </div>
                 </section>
             </Container>

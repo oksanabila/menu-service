@@ -10,6 +10,9 @@
   width: 100%;
   flex-direction: column;
 }
+.formColumn.margin {
+  margin-top: -7px;
+}
 
 .formItemWrap {
   border: 1px solid #c4c4c4;

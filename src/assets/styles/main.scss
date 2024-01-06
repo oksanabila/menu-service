@@ -1,9 +1,9 @@
 @use 'variables';
+@use 'mixins';
 
 body {
   margin: 0;
   font-family: 'Jost', sans-serif;
-  //font-family: 'Montserrat', sans-serif;
   font-size: 16px;
 }
 
@@ -58,15 +58,6 @@ div.MuiPaper-root {
     font-family: 'Jost', sans-serif;
     font-size: variables.$font-md;
     margin-bottom: 16px;
-  }
-}
-
-div.MuiFormControl-root {
-  label {
-    font-family: 'Jost', sans-serif;
-  }
-  .MuiInputBase-root {
-    margin-bottom: 10px;
   }
 }
 

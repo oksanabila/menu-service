@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import {Route, useNavigate, useParams} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import css from './SectionsStructure.module.scss';
 import Checkbox from '@mui/material/Checkbox';
@@ -8,15 +8,16 @@ import { SetupApiWithToken } from "../../../services/apiAdminService";
 import { ConfirmationDialog } from "../../Dialog/ConfirmationDialog/ConfirmationDialog";
 import { EditDialog } from "../../Dialog/EditDialog/EditDialog";
 import { DishForm } from "../DishForm/DishForm";
+import { useUpdate } from '../../../contexts/AdminUpdateProvider';
 
-const SectionsStructure =  React.memo(() => {
-    console.log("Рендер MyComponent");
 
+
+const SectionsStructure = () => {
     const { adminService } = SetupApiWithToken();
+    const { triggerUpdate } = useUpdate();
     const { dishId } = useParams();
     const navigate = useNavigate();
     const [treeData, setTreeData] = useState([]);
-    const [shouldRefresh, setShouldRefresh] = useState(false);
     const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
     const [editDialogOpen, setEditDialogOpen] = useState(false);
     const [selectedNodeData, setSelectedNodeData] = useState({ id: null, active: 0, type: null });
@@ -27,44 +28,12 @@ const SectionsStructure =  React.memo(() => {
         id: 0,
         name: '',
     });
-    const [dishUpdateFlag, setDishUpdateFlag] = useState(false);
-
-
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-    console.log("Рендер MyComponent");
-
-    // useEffect(() => {
-    //     const fetchDataAsync = async () => {
-    //         try {
-    //             const response = await adminService.getDishTree();
-    //             setTreeData(response.data.dataTree);
-    //         } catch (error) {
-    //             console.error('Error fetching company data:', error);
-    //         }
-    //     };
-    //
-    //     fetchDataAsync();
-    // }, [shouldRefresh]);
-
-    // useEffect(() => {
-    //     const fetchDataAsync = async () => {
-    //         try {
-    //             const response = await adminService.getDishTree();
-    //             setTreeData(response.data.dataTree);
-    //         } catch (error) {
-    //             console.error('Error fetching company data:', error);
-    //         }
-    //     };
-    //
-    //     fetchDataAsync();
-    // }, [shouldRefresh]);
-
 
     const fetchData = async () => {
         try {
             const response = await adminService.getDishTree();
             setTreeData(response.data.dataTree);
-            console.log(`treeData ${treeData}`);
         } catch (error) {
             console.error('Error fetching company data:', error);
         }
@@ -72,7 +41,7 @@ const SectionsStructure =  React.memo(() => {
 
     useEffect(() => {
         fetchData();
-    }, [shouldRefresh]);
+    }, [triggerUpdate]);
 
 
     const handleFormChange = useCallback((e) => {
@@ -87,12 +56,12 @@ const SectionsStructure =  React.memo(() => {
         adminService.createModifySection(formData)
             .then(response => {
                 setEditDialogOpen(false);
-                setShouldRefresh(prev => !prev);
+                triggerUpdate();
             })
             .catch(error => {
                 console.error('Error sending company data:', error);
             });
-    }, [formData, adminService]);
+    }, [formData, adminService, triggerUpdate]);
 
     const handleCreateEdit = useCallback((type, parentId, itemId = 0, itemName = '') => {
         setFormData({
@@ -107,14 +76,7 @@ const SectionsStructure =  React.memo(() => {
         setEditDialogOpen(true);
     }, []);
 
-
-    // const handleCheckboxChange = useCallback((nodeId, currentActiveStatus, type) => {
-    //     setSelectedNodeData({ id: nodeId, active: currentActiveStatus, type });
-    //     setConfirmDialogOpen(true);
-    // }, []);
-
     const handleCheckboxChange = useCallback((nodeId, currentActiveStatus, type) => {
-        // const name = type === 'dish' ? ''
         const text = currentActiveStatus === false
             ? (
                 <>
@@ -137,49 +99,23 @@ const SectionsStructure =  React.memo(() => {
         setConfirmDialogOpen(true);
     }, []);
 
-    // const handleConfirmationSubmit = useCallback(async (confirm) => {
-    //     if (confirm) {
-    //         const updatedData = { id: selectedNodeData.id, active: !selectedNodeData.active };
-    //         try {
-    //             if (selectedNodeData.type === 'section' || selectedNodeData.type === 'subsection') {
-    //                 await adminService.setSectionActivity(updatedData.id, updatedData.active);
-    //             } else if (selectedNodeData.type === 'dish') {
-    //                 await adminService.setDishActivity(updatedData.id, updatedData.active);
-    //             }
-    //             setShouldRefresh(prev => !prev);
-    //         } catch (error) {
-    //             console.error(`Error updating activity status for ${selectedNodeData.type}:`, error);
-    //         }
-    //     }
-    //     setConfirmDialogOpen(false);
-    // }, [selectedNodeData, adminService]);
-
     const handleConfirmationSubmit = useCallback(async (confirm) => {
         if (confirm) {
             const updatedData = { id: selectedNodeData.id, active: selectedNodeData.active === 0 ? 1 : 0 };
             try {
                 if (selectedNodeData.type === 'section' || selectedNodeData.type === 'subsection') {
                     await adminService.setSectionActivity(updatedData.id, updatedData.active);
-                    // console.log(sectionActivity);
                 } else if (selectedNodeData.type === 'dish') {
                     await adminService.setDishActivity(updatedData.id, updatedData.active);
                 }
-                setShouldRefresh(prev => !prev);
+                triggerUpdate();
             } catch (error) {
                 console.error(`Error updating activity status for ${selectedNodeData.type}:`, error);
             }
         }
         setConfirmDialogOpen(false);
-    }, [selectedNodeData, adminService]);
+    }, [selectedNodeData, adminService, triggerUpdate]);
 
-
-    // const handleEditDish = (dishId) => {
-    //     navigate(`/admin/menu-tab/dish/${dishId}`);
-    // };
-    //
-    // const handleCreateDish = () => {
-    //     navigate('/admin/menu-tab/dish/new');
-    // };
 
     const handleEditDish = (dishId) => {
         navigate(`/admin/menu-tab/dish/${dishId}`);
@@ -187,21 +123,6 @@ const SectionsStructure =  React.memo(() => {
 
     const handleCreateDish = (parentId) => {
         navigate(`/admin/menu-tab/dish/new?parentId=${parentId}`);
-    };
-    const handleDishUpdate = () => {
-        setDishUpdateFlag(prevFlag => !prevFlag);
-    };
-    const generateEditTitle = (type, itemName) => {
-        switch (type) {
-            case 'section':
-                return <div><span className={`${css.bold} ${css.uppercase}`}>{itemName}</span>: edit section</div>;
-            case 'subsection':
-                return <div><span className={`${css.bold} ${css.capitalize}`}>{itemName}</span>: edit subsection</div>;
-            case 'dish':
-                return `Edit Dish - ${itemName || 'No Name'}`;
-            default:
-                return '';
-        }
     };
 
     const renderButton = (label, className, onClick) => (
@@ -227,8 +148,6 @@ const SectionsStructure =  React.memo(() => {
 
     const renderSection = (section) => (
         <div key={section.id} className={css.section} id={section.id}>
-            {/*{console.log(section.id)}*/}
-
             <div className={css.menuItemWrap}>
                 <div className={css.leftCol}>
                     <Checkbox {...label} color="success" checked={section.active} onChange={() => handleCheckboxChange(section.id, section.active, 'section')} />
@@ -269,7 +188,6 @@ const SectionsStructure =  React.memo(() => {
                         <div className={css.price}>{dish.price} €</div>
                         <div>{dish.weight}</div>
                         <div><b>id: {dish.id}</b></div>
-
                     </div>
                 </div>
                 <div className={css.actionButtons}>
@@ -280,11 +198,7 @@ const SectionsStructure =  React.memo(() => {
     );
 
     if (dishId) {
-        // return <Route path="/admin/menu-tab/dish/:dishId" element={<DishForm key={dishId} />} />;
-        // return <DishForm key={dishId} />;
         return <DishForm key={dishId}/>;
-
-
     }
 
     return (
@@ -312,7 +226,6 @@ const SectionsStructure =  React.memo(() => {
             />
         </>
     );
-});
+};
 
-export default SectionsStructure;
-
+export { SectionsStructure };

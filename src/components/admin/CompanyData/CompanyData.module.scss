@@ -9,6 +9,9 @@
   display: flex;
   width: 100%;
   flex-direction: column;
+  &.margin {
+    margin-top: -7px;
+  }
 }
 
 .formItemWrap {
@@ -37,3 +40,4 @@
     align-items: center;
   }
 }
+

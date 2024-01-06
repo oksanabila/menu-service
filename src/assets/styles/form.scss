@@ -69,3 +69,47 @@ button {
   padding: 10px;
 }
 
+div.MuiFormControl-root {
+  label {
+    font-family: 'Jost', sans-serif;
+  }
+  .MuiInputBase-root {
+    font-family: 'Jost', sans-serif;
+
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}
+
+
+li.MuiMenuItem-root {
+  font-family: 'Jost', sans-serif;
+  text-transform: capitalize;
+  &:hover {
+    color: variables.$active-color;
+    background-color: variables.$active-color-transparent;
+  }
+}
+
+li.MuiMenuItem-root:not(li.MuiMenuItem-root.Mui-disabled) {
+  padding-left: 25px;
+}
+
+li.MuiMenuItem-root.Mui-disabled {
+  background-color: variables.$gray-md;
+  opacity: 0.6;
+  border-top: 1px solid variables.$gray-md;
+}
+
+li.MuiMenuItem-root.Mui-selected {
+  color: variables.$green-dark;
+  font-weight: 600;
+  background-color: variables.$active-color-transparent;
+}
+
+div.MuiSelect-select {
+  //font-family: 'Jost', sans-serif;
+
+  text-transform: capitalize;
+
+}

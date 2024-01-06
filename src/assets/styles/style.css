@@ -57,13 +57,6 @@ div.MuiPaper-root p {
   margin-bottom: 16px;
 }
 
-div.MuiFormControl-root label {
-  font-family: "Jost", sans-serif;
-}
-div.MuiFormControl-root .MuiInputBase-root {
-  margin-bottom: 10px;
-}
-
 .text-bold {
   font-weight: 600;
 }

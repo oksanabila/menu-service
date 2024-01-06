@@ -50,4 +50,42 @@ button.MuiButton-outlinedSuccess {
   padding: 10px;
 }
 
+div.MuiFormControl-root label {
+  font-family: "Jost", sans-serif;
+}
+div.MuiFormControl-root .MuiInputBase-root {
+  font-family: "Jost", sans-serif;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+li.MuiMenuItem-root {
+  font-family: "Jost", sans-serif;
+  text-transform: capitalize;
+}
+li.MuiMenuItem-root:hover {
+  color: #63B561;
+  background-color: rgba(99, 181, 97, 0.1);
+}
+
+li.MuiMenuItem-root:not(li.MuiMenuItem-root.Mui-disabled) {
+  padding-left: 25px;
+}
+
+li.MuiMenuItem-root.Mui-disabled {
+  background-color: #CCCCCC;
+  opacity: 0.6;
+  border-top: 1px solid #CCCCCC;
+}
+
+li.MuiMenuItem-root.Mui-selected {
+  color: #215b24;
+  font-weight: 600;
+  background-color: rgba(99, 181, 97, 0.1);
+}
+
+div.MuiSelect-select {
+  text-transform: capitalize;
+}
+
 /*# sourceMappingURL=form.css.map */

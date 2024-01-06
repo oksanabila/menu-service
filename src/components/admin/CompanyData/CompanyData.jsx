@@ -9,7 +9,6 @@ import {LoadPhotoInput} from "../LoadPhotoInput/LoadPhotoInput";
 const CompanyData = (effect, deps) => {
     const { adminService } = SetupApiWithToken();
     const [companyData, setCompanyData] = useState(null);
-    // const [treeData, setTreeData] = useState(null);
     const [initialFormData, setInitialFormData] = useState({
         id: '',
         name: '',
@@ -39,7 +38,6 @@ const CompanyData = (effect, deps) => {
     useEffect(() => {
         adminService.getAll()
             .then(response => {
-                // console.log('Company Data:', response.data);
                 console.log(response.data);
 
                 setCompanyData(response.data);
@@ -62,8 +60,6 @@ const CompanyData = (effect, deps) => {
             })
             .catch(error => console.error('Error fetching company data:', error));
     }, []);
-
-    console.log(companyData);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -113,17 +109,13 @@ const CompanyData = (effect, deps) => {
                         required
                         onChange={handleChange}
                     />
-                    {/*<h4>{`http://menu-service.me/${formData.link}`}</h4>*/}
                 </section>
                 <section className={`${css.formColumn} ${css.qrWrap}`}>
-                    {/*<div>*/}
                         <img className={css.qrImg} src={`https://barcode.tec-it.com/barcode.ashx?data=http://menu-service.me/${formData.link}&code=MobileQRCode&translate-esc=on&imagetype=Svg&eclevel=L`}/>
                     
                     {/*TODO change to https after release*/}
                     <div><a href={`http://menu-service.me/${formData.link}`} className={css.imgCapture}>{`menu-service.me/${formData.link}`}</a></div>
-                        {/*<p>You can print this QR-code and use it in your restaurant to access the menu</p>*/}
 
-                    {/*</div>*/}
                 </section>
                 <section className={css.formColumn}>
 
@@ -222,23 +214,7 @@ const CompanyData = (effect, deps) => {
                         Save
                     </Button>
                 </section>
-
             </Box>
-            {/*<div className={css.formContainer}>*/}
-
-            {/*    <section className={css.formColumn}>*/}
-            {/*        <h3>QR-code information</h3>*/}
-            {/*        <h4>Your restaurant link:<br/>{`http://menu-service.me/${formData.link}`}</h4>*/}
-            {/*        <p>You can print this QR-code and use it in your restaurant to access the menu</p>*/}
-            {/*    </section>*/}
-            {/*    <section className={css.formColumn}>*/}
-            {/*       <div>*/}
-            {/*           <div className={css.formItemWrap}>*/}
-            {/*               <img className={css.qrImg} src={`https://barcode.tec-it.com/barcode.ashx?data=http://menu-service.me/${formData.link}&code=MobileQRCode&translate-esc=on&imagetype=Svg&eclevel=L`}/>*/}
-            {/*           </div>*/}
-            {/*       </div>*/}
-            {/*    </section>*/}
-            {/*</div>*/}
         </div>
     );
 };

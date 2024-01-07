@@ -89,4 +89,10 @@ div.MuiSelect-select {
   text-transform: capitalize;
 }
 
+@media (max-width: 540px) {
+  button.MuiButton-root {
+    font-size: 16px;
+  }
+}
+
 /*# sourceMappingURL=form.css.map */

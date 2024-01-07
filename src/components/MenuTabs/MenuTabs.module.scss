@@ -1,3 +1,6 @@
+@use '../../assets/styles/variables';
+
+
 .tabsWrap {
   //background-color: hotpink;
   width: 100%;
@@ -29,8 +32,21 @@
   border: 2px solid #CCCCCC;
   &[aria-selected="true"]{
     background-color: white;
-    border-color: var(--active-color);
-    color: var(--active-color);
+    border-color: variables.$active-color;
+    color: variables.$active-color;
 
+  }
+}
+
+
+@media (max-width: variables.$sm) {
+  .menuTab {
+    font-size: variables.$font-md;
+  }
+}
+
+@media (max-width: variables.$xs) {
+  .menuTab {
+    font-size: variables.$font-sm;
   }
 }

@@ -113,3 +113,12 @@ div.MuiSelect-select {
   text-transform: capitalize;
 
 }
+
+
+@media (max-width: variables.$xs) {
+  button {
+    &.MuiButton-root {
+      font-size: variables.$font-sm;
+    }
+  }
+}

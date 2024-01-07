@@ -21,6 +21,7 @@
   border: 1px solid variables.$gray;
 
 }
+
 div.dishDialog {
   position: absolute;
   right: 0;
@@ -29,6 +30,9 @@ div.dishDialog {
   button {
     background-color: white;
     //border: 1px solid;
+    &:hover {
+      background-color: #92e090;
+    }
   }
 }
 

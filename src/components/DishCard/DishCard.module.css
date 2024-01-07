@@ -21,6 +21,9 @@ div.dishDialog {
 div.dishDialog button {
   background-color: white;
 }
+div.dishDialog button:hover {
+  background-color: #92e090;
+}
 
 .dishGrid {
   display: grid;

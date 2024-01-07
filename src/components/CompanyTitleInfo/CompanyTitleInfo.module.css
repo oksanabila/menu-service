@@ -149,22 +149,6 @@
   border: 0;
 }
 
-.btn {
-  max-width: 100%;
-  width: 350px;
-}
-.btn.MuiButton-root {
-  font-family: "Jost", sans-serif;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 1;
-  text-transform: unset;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  background-color: #63B561;
-  border-radius: 10px;
-}
-
 .btnWrap {
   width: 100%;
   display: inline-block;
@@ -172,6 +156,10 @@
 }
 .btnWrap:not(:first-child):not(:last-child) {
   margin: 16px 0;
+}
+.btnWrap button {
+  max-width: 100%;
+  width: 350px;
 }
 
 @media (max-width: 960px) {
@@ -183,7 +171,7 @@
     grid-row-gap: 16px;
   }
   .grid .gridItem:nth-child(2), .grid .gridItem:nth-child(3), .grid .gridItem:nth-child(5) {
-    max-width: 1320px;
+    max-width: 100%;
     width: 100%;
     padding-right: 16px;
     padding-left: 16px;
@@ -234,6 +222,10 @@
 @media (max-width: 540px) {
   .logoWrap {
     padding-top: 77%;
+  }
+  .btnWrap button {
+    width: 100%;
+    font-size: 16px;
   }
 }
 

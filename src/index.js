@@ -10,12 +10,13 @@ import {store} from "./redux";
 import {Router} from "./routing/Router";
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <Provider store={store}>
         <BrowserRouter>
-            <Router/>
+                <Router/>
         </BrowserRouter>
     </Provider>
 );

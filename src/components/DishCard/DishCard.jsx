@@ -8,13 +8,13 @@ import {CustomDialog} from "../Dialog/CustomDialog/CustomDialog";
 
 
 const DishCard = ({dish}) => {
-    const [menuData, setMenuData] = useState(null);
+    // const [menuData, setMenuData] = useState(null);
     const [open, setOpen] = useState(false);
-    useEffect(() => {
-        companyService.getAll()
-            .then(response => setMenuData(response.data.menu))
-            .catch(error => console.error("Error fetching menu data:", error));
-    }, []);
+    // useEffect(() => {
+    //     companyService.getAll()
+    //         .then(response => setMenuData(response.data.menu))
+    //         .catch(error => console.error("Error fetching menu data:", error));
+    // }, []);
     useEffect(() => {
         console.log('Current state of open:', open);
     }, [open]);

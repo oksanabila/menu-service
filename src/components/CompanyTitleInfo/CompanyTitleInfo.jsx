@@ -8,10 +8,12 @@ import {baseURL, imgLink} from "../../constants";
 import logoImg from "../../assets/img/rest-bg.jpg";
 import logoInst from "../../assets/img/icon-inst.svg";
 import logoFb from "../../assets/img/icon-fb.svg";
+import {useMenuData} from "../../contexts/MenuProvider";
 
 const CompanyTitleInfo = () => {
     const [companyData, setCompanyData] = useState(null);
     const { companyLink } = useParams();
+    const { menuData } = useMenuData();
     console.log(companyLink);
     useEffect(() => {
         console.log(`${baseURL}/${companyLink}`);
@@ -23,9 +25,13 @@ const CompanyTitleInfo = () => {
             })
             .catch(error => console.error('Error fetching company data:', error));
     }, []);
+    useEffect(() => {
+        console.log(menuData);
+        }, [menuData]);
     if (!companyData) {
         return <div>Loading...</div>;
     }
+
 
     return (
         <>
@@ -53,14 +59,14 @@ const CompanyTitleInfo = () => {
                    {/*<h3 className={css.menuTitle}>Menu:</h3>*/}
 
                    <div className={css.menuBtnWrap}>
-                       <Link to={`menu`} className={css.btnWrap} >
+                       <Link to={`menu?tab=Especials`} className={css.btnWrap} >
                            <Button className={css.btn} size="large" variant="contained" color="success">Open specials</Button>
                        </Link>
-                       <Link to={`menu`} className={css.btnWrap} >
+                       <Link to={`menu?tab=Food`} className={css.btnWrap} >
                            <Button className={css.btn} size="large" variant="outlined" color="success">Food</Button>
                        </Link>
 
-                       <Link to={`menu`} className={css.btnWrap} >
+                       <Link to={`menu?tab=drink`} className={css.btnWrap} >
                            <Button className={css.btn} size="large" variant="outlined" color="success">Drinks</Button>
                        </Link>
                    </div>

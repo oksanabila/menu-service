@@ -3,10 +3,20 @@ import {MenuTabs} from "../../components/MenuTabs/MenuTabs";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import {Header} from "../../components/Header/Header";
+import {Button} from "@mui/material";
 
 const MenuPage = () => {
     return (
         <>
+            {/*<Header>*/}
+            {/*    /!*<ThemeProvider theme={theme}>*!/*/}
+            {/*    <Button variant="contained"*/}
+            {/*            color="error"*/}
+            {/*            onClick={handleGoBack}*/}
+            {/*    >Go Back</Button>*/}
+            {/*    /!*</ThemeProvider>*!/*/}
+            {/*</Header>*/}
             <MenuTabs/>
         </>
     );

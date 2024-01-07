@@ -43,7 +43,6 @@ button {
   //width: 100%;
   &.MuiButton-root {
     min-width: 100px;
-
     font-family: 'Jost', sans-serif;
     font-weight: 500;
     font-size: variables.$font-lg;
@@ -52,6 +51,7 @@ button {
     padding-top: 12px;
     padding-bottom: 12px;
     border-radius: 10px;
+    box-sizing: border-box;
   }
   &.MuiButton-containedSuccess {
     background-color: variables.$active-color;

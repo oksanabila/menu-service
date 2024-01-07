@@ -34,6 +34,7 @@ button.MuiButton-root {
   padding-top: 12px;
   padding-bottom: 12px;
   border-radius: 10px;
+  box-sizing: border-box;
 }
 button.MuiButton-containedSuccess {
   background-color: #63B561;

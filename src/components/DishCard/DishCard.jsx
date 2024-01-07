@@ -79,7 +79,9 @@ const DishCard = ({dish}) => {
                     '& .MuiDialogContent-root': {
                         padding: 0,
                     }
-                }}>
+                }}
+                dialogClassname={css.dishDialog}
+            >
                 <div className={css.dialog}>
                     <div className={css.dialogImgWrap}>
                         <div className={css.dialogImgInner}>

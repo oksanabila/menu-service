@@ -12,6 +12,16 @@
   border: 1px solid #dddddd;
 }
 
+.dishDialog {
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  padding: 10px;
+}
+.dishDialog button {
+  background-color: white;
+}
+
 .dishGrid {
   display: grid;
   grid-template-columns: 35% 1fr;
